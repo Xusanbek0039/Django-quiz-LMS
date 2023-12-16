@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ quiz_name }} | Question
+{% endblock %}
+
+
+
+
+{% block content %}
+    <nav class="navbar navbar-light bg-light fixed-top">
+		  <div class="container">
+		    <h3>Quiz: <span class="text-danger">{{quiz_name}}</span></h3>
+
+		    <div class="dflex">
+		      <b class="c_left">
+
+		      </b>
+		      <div class="time-interval">
+
+		      </div>
+		    </div>
+		  </div>
+		</nav>
+
+    <div class="container" style="margin-top: 100px;">
+
+			{% for q in question %}
+				<input name="q_name" type="text" value="{{ q.id }}" hidden is_theory="{{q.is_theory_question}}">
+				<div style="margin: 60px 0 0 0;">
+
+						<h5 class="mb-3"><span class="text-dark">{{q.question}}</span></h5>
+						{% if not q.chose1 and not q.chose2 and not q.chose3 and not q.chose4 %}
+							<h5 class="lead">Answer*</h5>
+							<div class="form-floating">
+								<textarea class="form-control" placeholder="Leave a answer here" name="theory" style="height: 100px"></textarea>
+								<label for="floatingTextarea2">Leave an answer here</label>
+							</div>
+
+						{% else %}
+							<h5 class="lead">Answer*</h5>
+							{% if q.chose1 %}
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="{{q.id}}" value="{{q.chose1}}">
+									<label class="form-check-label" for="">{{q.chose1}}</label>
+								</div>
+							{% endif %}
+
+							{% if q.chose2 %}
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="{{q.id}}" value="{{q.chose2}}">
+									<label class="form-check-label" for="">{{q.chose2}}</label>
+								</div>
+							{% endif %}
+
+							{% if q.chose3 %}
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="{{q.id}}" value="{{q.chose3}}">
+									<label class="form-check-label" for="">{{q.chose3}}</label>
+								</div>
+							{% endif %}
+
+							{% if q.chose4 %}
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="{{q.id}}" value="{{q.chose4}}">
+									<label class="form-check-label" for="">{{q.chose4}}</label>
+								</div>
+							{% endif %}
+						{% endif %}
+
+				</div>
+			{% empty %}
+				<h1>No questions............!</h1>
+
+			{% endfor %}
+			<button id="btn_save" class="btn btn-primary" style="margin-top: 80px; margin-bottom: 80px;">Send</button>
+
+    </div>
+    	    <script>
+
+
+			const loc = window.location.origin
+
+			$('#btn_save').click(function(){
+				const all_questions = document.getElementsByName('q_name')
+
+				const data = {}
+
+				all_questions.forEach(element => {
+					let radio_input = document.getElementsByName(element.value)
+
+					radio_input.forEach(check => {
+						if (check.checked == true){
+							data[element.value] = {'answer': check.value, 'is_theory': element.getAttribute('is_theory')}
+						}else{
+							if (!data[element.value]){
+								data[element.value] = {'answer': 'not_answered', 'is_theory': element.getAttribute('is_theory')}
+							}
+						}
+					})
+
+				})
+				const all_theory = document.getElementsByName('theory')
+				for(let i=0; i<all_questions.length; i++){
+					if(all_questions[i].getAttribute('is_theory') == 'True'){
+						if(all_theory[i].value == ''){
+							data[all_questions[i].value] = {'answer': 'not_answered', 'is_theory': 'True'}
+						}else{
+							data[all_questions[i].value] = {'answer': all_theory[i].value, 'is_theory': 'True'}
+
+						}
+					}
+				}
+
+
+				const data_json = JSON.stringify(data)
+				$.ajax({
+					method: 'POST',
+					url: `${loc}/quiz/get-quiz-degree/`,
+					data:{ data_json, 'quiz_id': '{{quiz_id}}'},
+					success: function(response){
+						window.location.replace(`${loc}/quiz/reports/`)
+					}
+				})
+
+			})
+
+			$(window).blur(function(){
+				document.getElementById('btn_save').click()
+			})
+
+			$(document).mouseleave(function(){
+				document.getElementById('btn_save').click()
+			})
+
+
+
+
+	      let loc_host = `ws://${window.location.host}`
+
+	      let socket = new WebSocket(`${loc_host}/ws/test_cons/`)
+
+
+
+			socket.onmessage = (e) => {
+				const time_interval = document.getElementsByClassName('time-interval')
+	          	const c_left = document.getElementsByClassName('c_left')
+
+	          	const data = JSON.parse(e['data'])
+
+	          	let keys = Object.keys(data['quiz_start'])
+
+	          	keys.map((k, i) =>{
+					for(let x=0; x<time_interval.length; x++){
+
+						if('{{quiz_id}}' == k){
+
+							if(data['quiz_start'][k]['is_start'] == true){
+
+	                          time_interval[x].classList.add('text-danger', 'h3')
+	                          c_left[x].classList.add('text-dark')
+	                          c_left[x].innerHTML = 'Ended in'
+	                          time_interval[x].innerHTML = `${data['quiz_start'][k]['time_now']}`
+
+	                      	}else if(data['quiz_start'][k]['is_start'] == 'ended'){
+							  document.getElementById('btn_save').click()
+
+	                      	}
+
+	                  	}
+
+	              	}
+
+	          	})
+	          socket.send(true)
+
+
+	      }
+
+
+	    </script>
+
+{% endblock %}
+
+
+
+
+
+
+

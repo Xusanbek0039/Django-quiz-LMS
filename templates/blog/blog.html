@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  LMS | Blog
+{% endblock title %}
+
+{% block bg %}
+   style="background-image: url('{% static "photo/blog/blog.jpg" %}')" 
+{% endblock bg %}
+
+{% block content %}
+<div class="navbar-fixed-top" id="bg-blog" style="background-image: url('{% static "photo/blog/blog.jpg" %}'); padding:150px">
+		<h1 class="text-center text-white">Blog</h1>
+</div>
+
+
+
+
+
+<div class="container-fluid border p-5">
+
+	<div class="row justify-content-center  opacity-75" role="alert">
+
+		{% for data in answer %}
+			<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+
+				<div class="shadow-lg p-3 mb-5 bg-body rounded-3 p-5" style="margin-top: 5%;">
+					<div>
+						<b>Explain</b><br>
+						<b>On date</b>
+					</div>
+					<div class="position-relative">
+						<div class="position-absolute bottom-0 end-0">
+							<b class="card-title">{{data.question}}</b><br>
+							<b class="text-muted">{{data.on_date}}</b>
+						</div>
+
+						
+					</div>
+					<div class="mt-3">
+						<a class="q_class" id_val="{{data.id}}" data-bs-toggle="modal" href="#exampleModalToggle" role="button" style="color: rgb(52, 60, 61);">
+							<cite title="view answer">view more</cite>
+							
+						</a>
+					</div>
+				</div>
+
+			</div>
+
+		{% endfor %}
+		
+		
+	</div>
+	
+</div>
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalToggleLabel">Instruction</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<figure class="text-center">
+				<blockquote class="blockquote">
+				  <p id="u_q"></p>
+				</blockquote>
+				<figcaption class="blockquote-footer mt-4" id="u_ans">
+				</figcaption>
+			  </figure>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  <script>
+	let cus_nav = document.getElementById('cus_nav')
+	cus_nav.classList.remove('animy')
+	cus_nav.classList.add('bg-dark')
+
+	  const loc = window.location.origin
+
+	  let q_class = document.getElementsByClassName('q_class')
+
+	  for(let i=0; i<q_class.length; i++){
+		  q_class[i].addEventListener('click', e => {
+			  $.ajax({
+				  method: 'POST',
+				  url: `${loc}/users/response/blog/`,
+				  data: {'id': q_class[i].getAttribute('id_val')},
+				  success: function(res){
+					  $('#u_q').html(res['q'])
+					  $('#u_ans').html(res['ans'])
+				  }
+			  })
+			  
+		  })
+	  }
+
+	  window.onload = function(){
+
+		  $('#blog').addClass('now')
+	  }
+
+  </script>
+
+
+
+{% endblock content %}

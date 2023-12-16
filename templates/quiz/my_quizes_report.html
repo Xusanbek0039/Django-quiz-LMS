@@ -1,0 +1,283 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/form_style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+        <script src="{% static 'js/jquery-min.js' %}"></script>
+
+        <script src="{% static 'js/popper.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.v5.js' %}"></script>
+        <title>Add quiz</title>
+
+        <style>
+            hr{
+              background-color: white;
+            }
+            .scroll ::-webkit-scrollbar {
+              width: 2px;
+              height: 1px;
+            }
+
+            .scroll ::-webkit-scrollbar-track {
+              background-color: #6c757d;
+            }
+
+            .scroll ::-webkit-scrollbar-thumb {
+              background-color: #6c757d;
+            }
+
+            .scroll ::-webkit-scrollbar-thumb:hover {
+              background-color: #6c757d;
+            }
+
+            .bt {
+              background-color: #5a6268;
+              border-color: #5a6268;
+            }
+
+            .bt:hover {
+              background-color: #fdfeff;
+              border-color: #454b50;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="sidebar">
+  <div class="logo_content">
+      <div class="logo">
+        <i class='bx bxl-kickstarter'></i>
+          <div class="logo_name">
+             anemy Lms
+          </div>
+          <br>
+
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+  </div>
+  <ul class="nav_list">
+
+      <li>
+
+              <a href="{% url 'instructor_home' %}">
+                <i class='bx bxs-home' ></i>
+                  <span class="links_name">Home</span>
+              </a>
+               <span class="tooltip">Home</span>
+               <hr>
+
+      </li>
+
+
+      <li>
+              <a href="{% url 'Schedule_home' %}">
+                  <i class='bx bx-table' ></i>
+                  <span class="links_name">Schedule</span>
+              </a>
+              <span class="tooltip">Schedule</span>
+              <hr>
+
+      </li>
+
+
+
+  </ul>
+  <div class="profile_content">
+      <div class="profile">
+          <div class="profile_details">
+            <img src="{% static 'iconins.png' %}" alt="">
+              <div class="name_job">
+                  <div class="name"> {{user.first_name }} {{ user.last_name}} </div>
+                  <div class="job">{{user.instructor_type}}</div>
+              </div>
+          </div>
+          <a href="{% url 'logout-view' %}" class="text-white"><i class='bx bx-log-out' id="log_out"></i></a>
+      </div>
+  </div>
+</div>
+
+        <div class="home_content">
+
+            <header>
+
+                  <div class="px-3 py-2 text-white" style="background-color: #11101d;">
+                    <div class="container">
+                      <div class="justify-content-center justify-content-lg-start">
+                        <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                        </a>
+
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                            <li>
+                                <a href="{% url 'instructor_home' %}" class="nav-link text-white">home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'add-quiz' Schedule_name %}" class="nav-link text-white">Add quiz</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'my-quizes-view' Schedule_name %}" class="nav-link text-white">My quizes</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'reports-view' Schedule_name %}" class="nav-link text-white">Quiz report</a>
+                            </li>
+
+
+                          <li>
+
+                            <div class="dropdown ">
+                              <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false">
+                                  Schedule
+                            </button>
+                              <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                                {% for instructor_Schedule in instructor_Schedule %}
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="{% url 'Schedule_Instructor' instructor_Schedule.instructor_schedule_name %}">
+                                    {{instructor_Schedule.instructor_schedule_name}}</a>
+                                  <div class="dropdown-divider"></div>
+                                {% endfor %}
+
+
+                              </div>
+                            </div>
+                          </li>
+
+
+
+
+                        </ul>
+
+
+                    </div>
+                  </div>
+                  </div>
+
+                <!-- <div class="px-3 py-2 border-bottom mb-3">
+                  <div class="container d-flex flex-wrap justify-content-center">
+
+
+                    <div class="text-end">
+                      <center><b>welcome {{user.instructor_type}} : {{user.first_name }} {{ user.last_name}} </b></center>
+                    </div>
+
+                  </div>
+                </div> -->
+
+            </header>
+
+            <div class="row justify-content-center" style="margin-top: 95px;">
+
+            {% for data in my_quizes %}
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'photo/quiz/quiz-img.png' %}" class="card-img-top" alt="...">
+                        <div class="card-body" style="margin-left: 17px;">
+
+                            <h5 class="card-title">{{ data.name }}</h5><hr>
+                            <p class="card-text">{{ data.topic }}</p><hr>
+
+                            <a href="{% url 'report-one' data.id Schedule_name %}" class="btn btn-info btn-sm card-link">Chack report</a>
+                            <a name="name_delete" id_val="{{ data.id }}" class="btn btn-danger card-link btn-sm" data-bs-toggle="modal" href="#delete-quiz" role="button">Delete quiz</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            {% empty %}
+                    <h1 class="text-muted" style="text-align: center; margin-top: 20%;">No Reports yet............!</h1>
+
+            {% endfor %}
+
+
+            <div class="modal fade" id="delete-quiz" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalToggleLabel"></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form action="" method="post" id="">
+                        {% csrf_token %}
+                        <div class="modal-body custom_css" id="custom_in">
+
+                            <div class="lead text-muted">
+                                If deleted... all data of quiz reports from students and you will lost..!
+                            </div>
+
+
+                            <input type="number" id="quiz_id" hidden name="quiz_id">
+                        </div>
+
+                        <div class="modal-footer" id="custom_footer">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </div>
+                    </form>
+
+                  </div>
+                </div>
+            </div>
+
+         </div>
+
+        </div>
+
+        <script>
+
+            let btn = document.querySelector('#btn')
+            let sidebar = document.querySelector('.sidebar')
+
+            btn.onclick = function(){
+                sidebar.classList.toggle('active')
+            }
+
+
+            const loc = location.origin
+
+            let names = document.getElementsByName('name_delete')
+
+            for(let i=0; i<names.length; i++){
+                names[i].addEventListener('click', () => {
+                    document.getElementById('quiz_id').value = names[i].attributes['id_val'].value
+                    $.ajax({
+                        method: 'GET',
+                        url: `${loc}/instructor/response_id/`,
+                        data: {id: names[i].attributes['id_val'].value},
+                        success: function(response){
+                            $('#exampleModalToggleLabel').html(`
+                                Are you sure delete:  ${response.name}
+                            `)
+
+                        }
+                    })
+                })
+
+            }
+
+
+	  </script>
+
+    </body>
+
+</html>
+
+
+
+
+
+

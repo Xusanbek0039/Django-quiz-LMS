@@ -1,0 +1,101 @@
+{% extends "baseSidebar.html" %}
+
+{% block title %}
+	Superuser| Admins
+{% endblock title %}
+
+
+{% block userPage %}
+
+	<h1 class="text-center mt-5">Messages</h1>
+
+	<div class="container mt-5">
+		<div class="row">
+			{% for data in messages %}
+				
+				<div class="col-sm-6 p-5">
+					<a class="send_id" id_val="{{data.id}}" data-bs-toggle="modal" href="#exampleModalToggle" role="button" style="color: black; text-decoration: none;">
+						<div class="card">
+							<div class="card-body">
+								<div>
+									<b>About</b><br>
+									<b>E-mail</b>
+								</div>
+								<div class="position-relative">
+									<div class="position-absolute bottom-0 end-0">
+										<b class="card-title">{{data.about}}</b><br>
+										<b class="text-muted">{{data.user_email}}</b>
+									</div>
+
+									
+								</div>
+								
+							</div>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+			
+		  </div>
+	</div>
+
+	<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalToggleLabel">Answer*</h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			  <form action="" method="post">{% csrf_token %}
+				  <input id="q_id" name="q_id" type="number" hidden>
+
+				  <input id="q_type" type="text" class="form-control mb-4">
+
+				  <div class="form-floating">
+					<textarea class="form-control" placeholder="Leave a comment here" name="q_description" id="q_description" style="height: 100px"></textarea>
+					<label for="q_description">description</label>
+				  </div><hr>
+
+				  <div class="form-floating">
+					<textarea class="form-control" placeholder="Leave a comment here" id="answer" name="answer" style="height: 100px" required></textarea>
+					<label for="answer">Your answer</label>
+				  </div>
+
+				  <div class="modal-footer">
+					<button class="btn btn-primary" type="submit">Submit</button>
+				  </div>
+
+				  
+
+			  </form>
+			</div>
+			
+		  </div>
+		</div>
+	  </div>
+
+	  <script>
+
+		  const loc = document.location.origin;
+
+		  let send_id = document.getElementsByClassName('send_id')
+
+		  for(let i=0; i<send_id.length; i++){
+			  send_id[i].addEventListener('click', e => {
+				  console.log(send_id[i].getAttribute('id_val'))
+				  $.ajax({
+					  method: 'POST',
+					  url: `${loc}/super/dashboard/response-description/`,
+					  data:{'id': send_id[i].getAttribute('id_val')},
+					  success:function(res){
+						  $('#q_id').val(res['id'])
+						  $('#q_type').val(res['q_type'])
+						  $('#q_description').val(res['description'])
+					  }
+				  })
+			  })
+		  }
+	  </script>
+
+{% endblock userPage %}

@@ -1,0 +1,451 @@
+{% load static %}
+<html lang="en">
+
+    <head>
+      <title>Kanmey Lms</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      {% comment %}
+      <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet"> -->
+
+      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+      {% endcomment %}
+
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+      <link rel="stylesheet" href="{% static 'sidebar.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+      <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+      <!-- CSS only -->
+      <link
+      rel="stylesheet"
+
+      href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css"
+    >
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="{% static 'js/jquery-min.js' %}"></script>
+
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+      <style>
+        body {
+          background-image: url('');
+        }
+
+        hr {
+          background-color: white;
+        }
+
+        .scroll ::-webkit-scrollbar {
+          width: 1px;
+
+        }
+
+        .scroll ::-webkit-scrollbar-track {
+          background-color: #6c757d;
+        }
+
+        .scroll ::-webkit-scrollbar-thumb {
+          background-color: #6c757d;
+        }
+
+        .scroll ::-webkit-scrollbar-thumb:hover {
+          background-color: #6c757d;
+        }
+        @keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+.textarea  {
+  border:2px #8fc1ec solid;
+  border-radius:2px ;
+}
+.textarea :hover {
+  border:2px #6ab2f2 solid;
+  border-radius:2px ;
+}
+.textarea :focus {
+  border:2px #6ab2f2 solid;
+  border-radius:2px ;
+}
+
+      </style>
+    </head>
+
+    <body class=scroll>
+
+      <div class="sidebar">
+        <div class="logo_content">
+          <div class="logo">
+            <i class='bx bxl-kickstarter'></i>
+            <div class="logo_name">
+              anemy Lms
+            </div>
+            <br>
+
+          </div>
+          <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+
+          <li>
+
+            <a href="{% url 'home_admin' %}">
+              <i class='bx bxs-home'></i>
+              <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+            <hr>
+
+          </li>
+
+    {% if  user.admin_type == "Main"  or  user.admin_type == "main"  %}
+
+
+          <li>
+            <a href="{% url 'course_admin' %}">
+              <i class="fas fa-book-open"></i>
+              <span class="links_name">Course</span>
+            </a>
+            <span class="tooltip">Course</span>
+            <hr>
+          </li>
+
+          <li>
+            <a href="{% url 'Schedule_admin' %}">
+              <i class='bx bx-table'></i>
+              <span class="links_name">Schedule </span>
+            </a>
+            <span class="tooltip">Schedule</span>
+            <hr>
+
+          </li>
+
+          <li>
+            <a href="{% url 'Schedule_instructor_admin' %}">
+
+              <i class="fa-solid fa-rectangle-history-circle-user"></i>
+              <span class="links_name">Schedule Instructor</span>
+            </a>
+            <span class="tooltip">Schedule Instructor</span>
+            <hr>
+          </li>
+
+
+          <li>
+            <a href="{% url 'Schedule_student_admin' %}">
+              <i class='fas fa-book-reader'></i>
+              <span class="links_name">Schedule Student</span>
+            </a>
+            <span class="tooltip">Schedule Student</span>
+            <hr>
+          </li>
+
+
+    {% elif user.admin_type == "inherit"  or  user.admin_type == "Inherit" %}
+
+
+      {% if ExtraPermissions.add_course %}
+      <!-- course_admin -->
+            <li>
+              <a href="{% url 'course_admin' %}">
+                <i class="fas fa-book-open"></i>
+                <span class="links_name">Course</span>
+              </a>
+              <span class="tooltip">Course</span>
+              <hr>
+            </li>
+            {% endif %}
+        {% if ExtraPermissions.add_schedule %}
+        <!-- Schedule_admin -->
+
+        <li>
+          <a href="{% url 'Schedule_admin' %}">
+            <i class='bx bx-table'></i>
+            <span class="links_name">Schedule </span>
+          </a>
+          <span class="tooltip">Schedule</span>
+          <hr>
+
+        </li>
+        {% endif %}
+        {% if ExtraPermissions.add_instructor_schedule == True %}
+        <!-- Schedule_instructor_admin -->
+            <li>
+              <a href="{% url 'Schedule_instructor_admin' %}">
+
+                <i class="fa-solid fa-rectangle-history-circle-user"></i>
+                <span class="links_name">Schedule Instructor</span>
+              </a>
+              <span class="tooltip">Schedule Instructor</span>
+              <hr>
+            </li>
+            {% endif %}
+        {% if ExtraPermissions.add_student_schedule %}
+      <!-- Schedule_student_admin -->
+      <li>
+        <a href="{% url 'Schedule_student_admin' %}">
+          <i class='fas fa-book-reader'></i>
+          <span class="links_name">Schedule Student</span>
+        </a>
+        <span class="tooltip">Schedule Student</span>
+        <hr>
+      </li>
+      {% endif %}
+
+    {% endif %}
+
+          <!-- fas fa-chalkboard-teacher -->
+
+        </ul>
+    <div class="profile_content">
+      <div class="profile">
+        <div class="profile_details">
+          <img src="{% static 'photo/user_type/admin.png' %}" alt=" image ">
+          <div class="name_job">
+            <div class="name"><a title="Profile" class="text-white" href="{% url 'my-info' %}">{{user.first_name }} {{ user.last_name}}</a> </div>
+            <div class="job">{{user.admin_type}}</div>
+          </div>
+        </div>
+        <a href="{% url 'logout-view' %}"><i class='bx bx-log-out text-white' id="log_out"></i></a>
+      </div>
+    </div>
+      </div>
+
+      <script>
+
+        let btn = document.querySelector('#btn')
+       let sidebar = document.querySelector('.sidebar')
+
+       btn.onclick = function () {
+         sidebar.classList.toggle('active')
+       }
+      </script>
+      <div class="wrapper  align-items-stretch home_content">
+
+        <!-- Page Content  -->
+        <div id="content" class=" justify-content-center ">
+          <header>
+
+            <div class="px-3 py-2 bg-Dark_blue text-white">
+              <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+
+                  <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+
+                    <!--  -->
+                    <!--  -->
+                    <li>
+                      <div class="dropdown ">
+                        <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Manage Users
+                      </button>
+                        <div class="dropdown-menu" aria-labelledby="triggerId">
+
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'manage_admin' %}"><i class="fa-solid fa-user-gear"></i> &nbsp; Manage Admin </a>
+                            <div class="dropdown-divider"></div>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'manage_instructor' %}"><i class="fa-solid fa-user-tie"></i> &nbsp; Manage Instructor </a>
+                            <div class="dropdown-divider"></div>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'manage_Student' %}"><i class="fa-solid fa-users"></i> &nbsp; Manage Student </a>
+                            <div class="dropdown-divider"></div>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'manage_parent' %}"><i class="fa-solid fa-family"></i> &nbsp; Manage Parent </a>
+                            <div class="dropdown-divider"></div>
+
+                        </div>
+                      </div>
+                    </li>
+                    <!--  -->
+
+                    <!--  -->
+                    <li>
+                      <div class="dropdown ">
+                        <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Schedule
+                      </button>
+                        <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                          {% for Schedule_company in Schedule_company %}
+                            <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{% url 'manage_Schedule' Schedule_company.schedule_name %}">
+                            <i class='bx bx-table'></i> &nbsp;  {{Schedule_company.schedule_name}}</a>
+                            <div class="dropdown-divider"></div>
+                          {% endfor %}
+
+
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="dropdown ">
+                        <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Request
+                      </button>
+                        <div class="dropdown-menu" aria-labelledby="triggerId">
+
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'Request_instructor' %}"><i class="fa-solid fa-user-plus"></i> &nbsp; Request Instructor </a>
+                            <div class="dropdown-divider"></div>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'Request_Student' %}"><i class="fa-solid fa-person-circle-plus"></i> &nbsp;  Request Student </a>
+                            <div class="dropdown-divider"></div>
+
+
+
+                        </div>
+                      </div>
+                    </li>
+
+
+                    <li>
+                      <a href="{% url 'Statistics' %}" class="nav-link text-white">
+                        Statistics
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#"  data-toggle="modal" data-target="#post"  class="nav-link text-white">
+                        Add Post
+                      </a>
+                    </li>
+                  </ul>
+
+                </div>
+
+              </div>
+            </div>
+
+
+        </header>
+
+
+
+        <!-- Page Content  -->
+      <div id="content" class="py-4 justify-content-center">
+             <div class="container justify-content-center">
+             <h1 class="text-center" style="margin-top: 50px">Manage posts</h1>
+              <div id="content" class=" justify-content-center scroll" style="padding-top:100px ;">
+
+                <div class="container col-9 justify-content-center " style="
+                overflow-y: scroll;
+                background-color:#141224 ;
+                height: 500px;
+
+                padding-top: .7%;
+                border:10px white double ;
+                border-radius:20px ;
+                color:white ;
+                justify-content:center ;
+                align-items: center;
+
+                ">
+                <br>
+
+                {% for Post  in Post  %}
+
+                    {% if Post.user_have_post == user.username %}
+                    <div class=" col-7" role="alert" >
+                    {% else %}
+                    <div class=" col-7" role="alert" style="background-color: #37363fad; ">
+                    {% endif %}
+
+                  {% if Post.user_have_post == user.username %}
+                  created_on >>  {{Post.created_on}} <br>
+                  {% else %}
+                  {{Post.user_have_post}} : created_on {{Post.created_on}} <br>
+                  {% endif %}
+                  <h6>Post Titel : {{Post.post_title}}</h6>
+                  <small>{{Post.post_description}}</small>
+
+                  <br>
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <small><button type="submit" name="delete" value="{{Post.id}}" class="btn btn-link">Delete</button></small>
+                  </form>
+
+
+
+                  <hr style="color:#ffffff">
+                </div>
+                {% endfor %}
+
+
+
+
+                  <div class=" " style="
+
+                  filter: blur(40px) saturate(120%) brightness(1.1);
+                  background-color:rgba(42, 19, 193, 0.196);
+                  height: 50%;
+                  width: 300px;
+
+                  margin-left: 10%;
+                  border:3px rgba(193, 19, 19, 0.231) solid ;
+                  border-radius:20px ;
+                  animation: rotate 12s linear infinite;
+                    position:fixed ;
+                ">  </div>
+
+
+              </div>
+
+            </div>
+             </div>
+
+           </div>
+        </div>
+
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <form action="" method="post">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="">Post Titel</label>
+                  <input type="text" class="form-control" required name="titel" id="" aria-describedby="helpId" placeholder="">
+                </div>
+                <textarea class="textarea"  name="description" required  id="" cols="30" rows="10"></textarea>
+              </div>
+              {% csrf_token %}
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="addpost" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>

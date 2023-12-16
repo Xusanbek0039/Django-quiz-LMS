@@ -1,0 +1,255 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <title>Kanemy Lms </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% comment %}
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  {% endcomment %}
+ 
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="{% static 'sidebar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <!-- CSS only -->
+  <script src="{% static 'js/jquery-min.js' %}"></script>
+  
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <style>
+    hr{
+      background-color: white;
+    }
+    .scroll ::-webkit-scrollbar {
+      width: 2px;
+      height: 1px;
+    }
+
+    .scroll ::-webkit-scrollbar-track {
+      background-color: #6c757d;
+    }
+
+    .scroll ::-webkit-scrollbar-thumb {
+      background-color: #6c757d;
+    }
+
+    .scroll ::-webkit-scrollbar-thumb:hover {
+      background-color: #6c757d;
+    }
+
+    .bt {
+      background-color: #5a6268;
+      border-color: #5a6268;
+    }
+
+    .bt:hover {
+      background-color: #fdfeff;
+      border-color: #454b50;
+    }
+  </style>
+</head>
+
+<body class="scroll">
+
+  <div class="sidebar">
+    <div class="logo_content">
+        <div class="logo">
+          <i class='bx bxl-kickstarter'></i>
+            <div class="logo_name">
+               anemy Lms
+            </div>
+            <br>
+            
+        </div>
+        <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav_list">
+  
+        <li>
+         
+                <a href="{% url 'instructor_home' %}">
+                  <i class='bx bxs-home' ></i>
+                    <span class="links_name">Home</span>
+                </a>
+                 <span class="tooltip">Home</span>
+                 <hr>
+           
+        </li>
+        
+  
+        <li>
+                <a href="{% url 'Schedule_home' %}">
+                    <i class='bx bx-table' ></i>
+                    <span class="links_name">Schedule</span>
+                </a>
+                <span class="tooltip">Schedule</span>
+                <hr>
+        
+        </li>
+      
+        <li>
+            <a href="#">
+                <i class='bx bx-cog' ></i>
+                <span class="links_name">Setting</span>
+            </a>
+            <span class="tooltip">Setting</span>
+  
+        </li>
+        
+    
+    </ul>
+    <div class="profile_content">
+        <div class="profile">
+            <div class="profile_details">
+                <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-24.jpgPrifile" alt="">
+                <div class="name_job">
+                    <div class="name">Ahmed Ibrahim</div>
+                    <div class="job">Web Developer</div>
+                </div>
+            </div>
+            <i class='bx bx-log-out' id="log_out"></i>
+        </div>
+    </div>
+  </div>
+  
+  <div class="wrapper d-flex align-items-stretch home_content">
+    <div id="content" class=" ">
+
+      <header>
+        <center>
+          <div class="px-3 py-2 bg-dark text-white">
+            <div class="container">
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                </a>
+
+                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                  <li>
+                    <a href="{% url 'instructor_home' %}" class="nav-link text-secondary">
+                     Home
+                    </a>
+                  </li>
+                  <li>
+                   
+                    <div class="dropdown ">
+                      <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false">
+                          Schedule
+                    </button>
+                      <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                        {% for instructor_Schedule in instructor_Schedule %}
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{% url 'Schedule_Instructor' instructor_Schedule.instructor_schedule_name %}">
+                            {{instructor_Schedule.instructor_schedule_name}}</a>
+                          <div class="dropdown-divider"></div>
+                        {% endfor %}
+                        
+                        
+                      </div>
+                    </div>
+                  </li>
+                  
+                  <li>
+                    <a href="#" class="nav-link text-white">
+                      Settings                   
+                    </a>
+                  </li>
+                
+
+
+                </ul>
+                <div class=" text-end">
+                  <ul class="nav ">
+                    <li class="nav-item"><a href="{% url 'logout-view' %}" class="nav-link link-dark px-2">Log Out</a></li>
+
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </center>
+        <div class="px-3 py-2 border-bottom mb-3">
+          <div class="container d-flex flex-wrap justify-content-center">
+
+
+            <div class="text-end">
+              <center><b>welcome {{user.instructor_type}} : {{user.first_name }} {{ user.last_name}} </b></center>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <div id="content" class=" d-flex justify-content-center py-4 "
+      style="
+        border-radius: 10%;
+        background-color:  rgba(113, 114, 114, 0.041);
+        ">
+
+        <div id="requestcompanymass" >
+          <div class="d-grid gap-2" >
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="form-group" style="width: 600px;">
+                <div class="row g-3">
+                  <div class="col">
+                    <p id="helpId" class="form-text  text-drak">Frist Name : {{user.first_name}}</p>
+                    <input type="text" class="form-control" name="fname" placeholder="First name" aria-label="First name">
+                  </div>
+                  <div class="col">
+                    <p id="helpId" class="form-text text-drak">Last Name : {{user.last_name}}</p>
+                    <input type="text" class="form-control" name="lname" placeholder="Last name" aria-label="Last name">
+                  </div>
+                 
+                </div>
+                <br>
+
+                <center><button type="submit" name="ed_f_l_name" class="btn btn-outline-dark col-4">Edit</button></center>
+           <hr>
+            <div class="form-group">
+              <p id="helpId" class="form-text text-drak">User Name : {{user.username}} </p>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+              <br>
+              <center><button type="submit" name="ed_username" class="btn btn-outline-dark col-4">Edit</button></center>
+              <hr>
+              <p id="helpId" class="form-text text-drak">E-mail : {{user.email}} </p>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+              <br>
+              <center><button type="submit" name="ed_email" class="btn btn-outline-dark col-4">Edit</button></center>
+              <hr>
+             
+              <p id="helpId" class="form-text text-drak">Password :  </p>
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+              <br>
+              <center><button type="submit" name="ed_email" class="btn btn-outline-dark col-4">Edit</button></center>
+              
+             
+            </div>
+         </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script>
+ let btn = document.querySelector('#btn')
+    let sidebar = document.querySelector('.sidebar')
+
+    btn.onclick = function () {
+      sidebar.classList.toggle('active')
+    }
+  </script>
+
+</body>
+
+</html>

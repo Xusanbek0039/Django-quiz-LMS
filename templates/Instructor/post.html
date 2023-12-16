@@ -1,0 +1,377 @@
+{% load  static %}
+<html lang="en">
+  <head>
+  	<title>Kanemy Lms</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% comment %}
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endcomment %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<link rel="stylesheet" href="{% static 'sidebar.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'schedule_home.css' %}"> -->
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+<!-- CSS only -->
+<link  rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css"> 
+<link rel="shortcut icon" href="{% static 'icons8-k-64.png' %}" type="image/x-icon">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="{% static 'js/jquery-min.js' %}"></script>
+<link rel="stylesheet" href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css">
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <style>
+      .scroll ::-webkit-scrollbar{
+        width: 0px;
+        height: 0px;
+      }
+      
+      .scroll ::-webkit-scrollbar-track{
+        background-color: #6c757d;
+      }
+      .scroll ::-webkit-scrollbar-thumb{
+        background-color: #6c757d;
+      }
+      .scroll ::-webkit-scrollbar-thumb:hover{
+        background-color: #6c757d;
+      }
+      .ul.breadcrumb {
+        border-radius: 0px;
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #11101d;
+}
+
+      .ul.breadcrumb .li {
+  display: inline;
+  font-size: 18px;
+  color:rgb(69, 171, 255) ;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+.ul.breadcrumb .li+.li:before {
+  padding: 8px;
+  color: rgb(255, 251, 251);
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+.ul.breadcrumb .li .a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+.ul.breadcrumb .li .a:hover {
+  color: #b3d6f4;
+  text-decoration: underline;
+}
+
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+.text-field-filled {
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  width: 250px;
+  position: relative;
+  transition: 150ms ease;
+  margin-right: 10px;
+  
+}
+
+.text-field-filled::before {
+  content: "";
+ 
+  display: block;
+  background-color: #005293;
+  position: absolute;
+  height: 2px;
+  width: 0%;
+  left: 50%;
+  bottom: 0;
+  transition: 150ms ease;
+  opacity: 0;
+}
+.text-field-filled:focus-within::before {
+  content: "";
+  display: block;
+  background-color: #0a0639;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  opacity: 1;
+}
+.text-field-filled:hover,
+.text-field-filled > input:focus {
+  background-color: #7b777775;
+  color: rgb(255, 255, 255);
+}
+.text-field-filled > input {
+  outline: none;
+  border-radius: 5px;
+  padding: 30px 10px 10px 15px;
+  background: none;
+  position: relative;
+  border: none;
+  width: 100%;
+}
+.text-field-filled > span {
+  color: #000000ad;
+  font-size: 1rem;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 5px;
+  line-height: 1px;
+  pointer-events: none;
+}
+.text-field-filled > input:focus ~ span,
+.text-field-filled > input:valid ~ span {
+  color: #ffffff;
+  font-size: 12px;
+  transform: translateY(-12px);
+}
+.text-field-filled > input:focus  ~  span{
+  color: #821212;
+}
+
+textarea {
+  margin-top: 10px;
+ 
+  width: 500px;
+  height: 100px;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+  border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+  border-image: none;
+  border-radius: 6px 6px 6px 6px;
+  border-style: none solid solid none;
+  border-width: medium 1px 1px medium;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+  color: #555555;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  padding: 5px 8px;
+  transition: background-color 0.2s ease 0s;
+}
+
+textarea:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+     </style>
+  </head>
+  <body class="scroll">
+    <body scroll>
+    
+      <div class="sidebar">
+        <div class="logo_content">
+          <div class="logo">
+            <i class='bx bxl-kickstarter'></i>
+            <div class="logo_name">
+              anemy Lms
+            </div>
+            <br>
+    
+          </div>
+          <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+    
+          <li>
+    
+            <a href="{% url 'instructor_home' %}">
+              <i class='bx bxs-home'></i>
+              <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+            <hr>
+    
+          </li>
+          
+         
+          <li>
+            <a href="{% url 'Schedule_home' %}">
+              <i class='bx bx-table'></i>
+              <span class="links_name">Schedule</span>
+            </a>
+            <span class="tooltip">Schedule</span>
+            <hr>
+    
+          </li>
+
+          {% if ExtraPermissions.open_course %}
+      <li>
+        <a href="{% url 'Schedule_student' Schedule_Name %}">
+          <i class='fas fa-book-reader'></i>
+          <span class="links_name"> Student Schedule</span>
+        </a>
+        <span class="tooltip"> Student Schedule</span>
+        <hr>
+      </li>
+    {% endif %}
+
+        </ul>
+        <div class="profile_content">
+          <div class="profile">
+            <div class="profile_details">
+              <img src="{% static 'std_profile.png'%}" alt=" image ">
+              <div class="name_job">
+                <div class="name"><a title="Profile" href="">{{user.first_name }} {{ user.last_name}}</a> </div>
+                <div class="job">{{user.instructor_type}}</div>
+              </div>
+            </div>
+            <a href="{% url 'logout-view' %}"><i class='bx bx-log-out' id="log_out"></i></a>
+          </div>
+        </div>
+      </div>
+       
+    
+
+
+    
+      <div class="wrapper  align-items-stretch home_content">
+        <ul class="ul breadcrumb ">
+          <li class="li"><a class="a"  href="{% url 'instructor_home' %}">Home</a></li>
+          <li  class="li" ><a class="a" href="{% url 'Schedule_home' %}">Schedule</a></li>
+          <li  class="li"><a class="a" href="{% url 'Schedule_Instructor' Schedule_Name %}">{{Schedule_Name}}</a></li>
+          <li  class="li" >Post</li>
+          <li  class="li" ><a href="#" class="a"  data-toggle="modal" data-target="#addpost" > Add Post </a></li>
+          
+        </ul>
+           <h1 class="text-center" style="margin-top: 100px">{{ Schedule_Name| capfirst }} posts</h1>
+
+        <div id="content" class=" justify-content-center scroll" style="padding-top:20px ; margin-top: -20px;">
+     
+          
+          <div class="container col-9 justify-content-center " style="
+          background-color:#141224 ;
+          height: 500px;
+          overflow-y: scroll;
+          padding-top: .7%;
+          padding-left: .7%;
+          border:5px white double ;
+          border-radius:20px ;
+          color:white ;
+          justify-content:center ;
+          align-items: center;
+          justify-content: center;
+          margin-top: 50px;
+          ">
+          
+          <br>
+          
+          {% for Post  in Post  %}
+          
+          {% if Post.user_have_post == user.username %}
+          <div class=" col-9" role="alert" style=" ">
+          {% else %}
+          <div class=" col-9" role="alert" style="background-color: #37363fad; ">
+          {% endif %}
+          
+            {% if Post.user_have_post == user.username %}
+            created_on >>  {{Post.created_on}} <br>
+            {% else %}
+           {% if  Post.type == "Main" or Post.type == "main" or Post.type == "Inherit" or Post.type == "inherit" %}
+            
+             Admin >  {{Post.type}} :: {{Post.name}} : created_on {{Post.created_on}} <br>
+            {% else %}
+            {{Post.type}} : created_on {{Post.created_on}} <br>
+            {% endif %}
+            {% endif %}
+            <h6>Post Titel : {{Post.post_title}}</h6>
+            <small>{{Post.post_description}}</small>
+
+            <hr style="color:#ffffff">
+          </div>
+          {% endfor %}
+            
+             
+            
+
+            <div class=" " style="
+             position: absolute;
+             margin-left: 10px;
+            
+            filter: blur(50px) saturate(120%) brightness(2.1);
+            background-color:radial-gradient(#1100c8, #6354d6);
+            height: 50%;
+            width: 100%;
+           border:3px white solid ;
+           border-radius:20px ;
+           animation: rotate 12s linear infinite;
+         
+          ">  </div>
+
+          
+        </div>
+
+      </div>
+      
+		</div>
+
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="addpost" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Post</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <form method="post">
+          <div class="modal-body" style="height: 400px;">
+           <div class="form-group">
+             <label for="">Post Titel</label>
+             <input type="text"
+               class="form-control" required name="titel" id="" aria-describedby="helpId" placeholder="Post Titel">
+          {% csrf_token %}
+           </div>
+           <label for="">post Description</label>
+           <textarea name="description" required   style="height: 200px; width:470px"id="" placeholder="Description" ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">ADD</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+     
+      let btn = document.querySelector('#btn')
+     let sidebar = document.querySelector('.sidebar')
+  
+     btn.onclick = function () {
+       sidebar.classList.toggle('active')
+     }
+    </script>
+  </body>
+</html>

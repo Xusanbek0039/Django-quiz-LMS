@@ -1,0 +1,634 @@
+
+		{% load static %}
+<html lang="en">
+
+<head>
+  <title>Kanmey Lms</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% comment %}
+  <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet"> -->
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  {% endcomment %}
+
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="{% static 'sidebar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <!-- CSS only -->
+  <link
+  rel="stylesheet"
+
+  href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css"
+> 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="{% static 'js/jquery-min.js' %}"></script>
+
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+  <style>
+    body {
+      background-image: url('');
+    }
+
+    hr {
+      background-color: white;
+    }
+
+    .scroll ::-webkit-scrollbar {
+      width: 1px;
+
+    }
+
+    .scroll ::-webkit-scrollbar-track {
+      background-color: #6c757d;
+    }
+
+    .scroll ::-webkit-scrollbar-thumb {
+      background-color: #6c757d;
+    }
+
+    .scroll ::-webkit-scrollbar-thumb:hover {
+      background-color: #6c757d;
+    }
+             .modal-dialog {
+          max-width: 700px;
+          margin: 1.75rem auto;
+      }
+  </style>
+</head>
+
+<body class="scroll" >
+
+  <div class="sidebar">
+    <div class="logo_content">
+      <div class="logo">
+        <i class='bx bxl-kickstarter'></i>
+        <div class="logo_name">
+          anemy Lms
+        </div>
+        <br>
+
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav_list">
+
+      <li>
+
+        <a href="{% url 'home_admin' %}">
+          <i class='bx bxs-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+        <hr>
+
+      </li>
+
+{% if  user.admin_type == "Main"  or  user.admin_type == "main"  %}
+
+
+      <li>
+        <a href="{% url 'course_admin' %}">
+          <i class="fas fa-book-open"></i>
+          <span class="links_name">Course</span>
+        </a>
+        <span class="tooltip">Course</span>
+        <hr>
+      </li>
+
+      <li>
+        <a href="{% url 'Schedule_admin' %}">
+          <i class='bx bx-table'></i>
+          <span class="links_name">Schedule </span>
+        </a>
+        <span class="tooltip">Schedule</span>
+        <hr>
+
+      </li>
+
+      <li>
+        <a href="{% url 'Schedule_instructor_admin' %}">
+
+          <i class="fa-solid fa-rectangle-history-circle-user"></i>
+          <span class="links_name">Schedule Instructor</span>
+        </a>
+        <span class="tooltip">Schedule Instructor</span>
+        <hr>
+      </li>
+
+
+      <li>
+        <a href="{% url 'Schedule_student_admin' %}">
+          <i class='fas fa-book-reader'></i>
+          <span class="links_name">Schedule Student</span>
+        </a>
+        <span class="tooltip">Schedule Student</span>
+        <hr>
+      </li>
+
+
+{% elif user.admin_type == "inherit"  or  user.admin_type == "Inherit" %}
+
+
+  {% if ExtraPermissions.add_course %}
+  <!-- course_admin -->
+        <li>
+          <a href="{% url 'course_admin' %}">
+            <i class="fas fa-book-open"></i>
+            <span class="links_name">Course</span>
+          </a>
+          <span class="tooltip">Course</span>
+          <hr>
+        </li>
+        {% endif %}
+    {% if ExtraPermissions.add_schedule %}
+    <!-- Schedule_admin -->
+
+    <li>
+      <a href="{% url 'Schedule_admin' %}">
+        <i class='bx bx-table'></i>
+        <span class="links_name">Schedule </span>
+      </a>
+      <span class="tooltip">Schedule</span>
+      <hr>
+
+    </li>
+    {% endif %}
+    {% if ExtraPermissions.add_instructor_schedule == True %}
+    <!-- Schedule_instructor_admin -->
+        <li>
+          <a href="{% url 'Schedule_instructor_admin' %}">
+
+            <i class="fa-solid fa-rectangle-history-circle-user"></i>
+            <span class="links_name">Schedule Instructor</span>
+          </a>
+          <span class="tooltip">Schedule Instructor</span>
+          <hr>
+        </li>
+        {% endif %}
+    {% if ExtraPermissions.add_student_schedule %}
+  <!-- Schedule_student_admin -->
+  <li>
+    <a href="{% url 'Schedule_student_admin' %}">
+      <i class='fas fa-book-reader'></i>
+      <span class="links_name">Schedule Student</span>
+    </a>
+    <span class="tooltip">Schedule Student</span>
+    <hr>
+  </li>
+  {% endif %}
+
+{% endif %}
+
+
+
+
+      <!-- fas fa-chalkboard-teacher -->
+
+    </ul>
+    <div class="profile_content">
+      <div class="profile">
+        <div class="profile_details">
+          <img src="{% static 'photo/user_type/admin.png' %}" alt=" image ">
+          <div class="name_job">
+            <div class="name"><a title="Profile" class="text-white" href="{% url 'my-info' %}">{{user.first_name }} {{ user.last_name}}</a> </div>
+            <div class="job">{{user.admin_type}}</div>
+          </div>
+        </div>
+        <a href="{% url 'logout-view' %}"><i class='bx bx-log-out text-white' id="log_out"></i></a>
+      </div>
+    </div>
+  </div>
+   
+  <script>
+     
+    let btn = document.querySelector('#btn')
+   let sidebar = document.querySelector('.sidebar')
+
+   btn.onclick = function () {
+     sidebar.classList.toggle('active')
+   }
+  </script>
+  <div class="wrapper  align-items-stretch home_content">
+
+    <!-- Page Content  -->
+    <div id="content" class=" justify-content-center ">
+      <header>
+      
+        <div class="px-3 py-2 bg-Dark_blue text-white">
+          <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+             
+
+              <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                
+                <!--  -->
+                <!--  -->
+                <li>
+                  <div class="dropdown ">
+                    <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Manage Users
+                  </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                   
+                        <div class="dropdown-divider"></div>                      
+                        <a class="dropdown-item" href="{% url 'manage_admin' %}"><i class="fa-solid fa-user-gear"></i> &nbsp; Manage Admin </a>
+                        <div class="dropdown-divider"></div>
+                      
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'manage_instructor' %}"><i class="fa-solid fa-user-tie"></i> &nbsp; Manage Instructor </a>
+                        <div class="dropdown-divider"></div>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'manage_Student' %}"><i class="fa-solid fa-users"></i> &nbsp; Manage Student </a>
+                        <div class="dropdown-divider"></div>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'manage_parent' %}"><i class="fa-solid fa-family"></i> &nbsp; Manage Parent </a>
+                        <div class="dropdown-divider"></div>
+
+                    </div>
+                  </div>
+                </li>
+                <!--  -->
+
+                <!--  -->
+                <li>
+                  <div class="dropdown ">
+                    <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Schedule
+                  </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                      {% for Schedule_company in Schedule_company %}
+                        <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'manage_Schedule' Schedule_company.schedule_name %}">
+                        <i class='bx bx-table'></i> &nbsp;  {{Schedule_company.schedule_name}}</a>
+                        <div class="dropdown-divider"></div>
+                      {% endfor %}
+                      
+                      
+                    </div>
+                  </div>
+                </li>
+               
+                <li>
+                  <div class="dropdown ">
+                    <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Request
+                  </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                   
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'Request_instructor' %}"><i class="fa-solid fa-user-plus"></i> &nbsp; Request Instructor </a>
+                        <div class="dropdown-divider"></div>
+                      
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'Request_Student' %}"><i class="fa-solid fa-person-circle-plus"></i> &nbsp;  Request Student </a>
+                        <div class="dropdown-divider"></div>
+
+                     
+
+                    </div>
+                  </div>
+                </li>
+
+                
+                <li>
+                  <a href="{% url 'Statistics' %}" class="nav-link text-white">
+                    Statistics
+                  </a>
+                </li>
+
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        
+
+    </header>
+
+
+
+    <!-- Page Content  -->
+  <div id="content" class="py-4 ">
+      <div class="container">
+      <h1 class="text-center" style="margin-top: 50px">Manage students</h1>
+        <div class="">
+          <div class="container " style="margin-left: 10px; margin-top: 100px">
+            <table id="tablestudent" class="table table-striped  table-bordered table-hover table-inverse table-responsive">
+              <thead class="thead-inverse|thead-default">
+                <tr>
+                  <th>Frist Name</th> 
+                  <th>Last Name</th>
+                  <th>Username</th>
+                  <th>E-mail</th>
+                  <th>ID College</th>
+                  <th>Dep art ment</th> 
+                  <th>Gender</th>
+                  <th>Age</th>
+                  <th>National_id</th>
+                  <th>Parent National Id</th>
+                  <th>Activ</th>
+                  <th>Edit</th>
+                  {% if ExtraPermissions.delete_student %}
+                  <th>Delete</th>
+                  {% endif%}
+                  
+                </tr>
+                </thead>
+                <tbody>
+                  {% for StudentAccount  in StudentAccount %}
+                  <tr>
+                    <td >{{StudentAccount.first_name}}</td>
+                    <td>{{StudentAccount.last_name}}</td>
+                    <td>{{StudentAccount.username}}</td>
+                    <td >{{StudentAccount.email}}</td>
+                    <td>{{StudentAccount.id_college}}</td>
+                    <td>{{StudentAccount.department}}</td>
+                    <td>{{StudentAccount.gender}}</td>
+                    <td >{{StudentAccount.age}}</td>
+                    <td>{{StudentAccount.national_id}}</td>
+                    <td>{{StudentAccount.parent_national_id}}</td>
+                 
+                      {% if StudentAccount.is_active %}
+                      <td><input type="checkbox" name="" checked="{{StudentAccount.is_active}}" id="{{StudentAccount.id}}"></td>
+                      {% else %}
+                      <td><input type="checkbox" name="" id="{{StudentAccount.id}}"></td>
+                      {% endif %}
+
+                    <td><a href="#" class="btn btn-outline-Dark_blue " data-toggle="modal" data-target="#modelId1">Edit</a></td>
+                    {% if ExtraPermissions.delete_student %}
+                    <td><a class="btn btn-outline-Dark_blue " href="{% url 'deletestudent' StudentAccount.id %}">Delete</a></td>
+                   {% endif%}
+                  </tr>
+                  {% endfor %}
+                 
+                  
+                </tbody>
+            </table>
+            
+          </div>
+          <center><input name="" data-toggle="modal" data-target="#modelId" id="" class="btn btn-outline-Dark_blue col-4" type="button" value="ADD Student"></center>
+        </div>
+      </div>     
+    
+
+       </div>
+		</div>
+
+    </div>
+
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen-lg-down col-8" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa-solid fa-user-plus"></i> ADD Student</h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <form action="" method="post">
+          <div class="modal-body">
+            <div class="container-fluid row row g-3">
+              <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">First Name</label>
+                <input required type="text" name="firstname" class="form-control" id="inputEmail4">
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Last Name</label>
+                <input required type="text" name="lastname" class="form-control" id="inputPassword4">
+              </div>
+              
+              <div class="col-md-6">
+                <label for="inputAddress" class="form-label">E-mail</label>
+                <input required type="email" name="email" class="form-control" id="inputAddress" placeholder="">
+              </div>
+
+              <div class="col-md-6">
+                <label for="inputAddress" class="form-label">National_Id</label>
+                <input required type="text" name="national_id" class="form-control" id="inputAddress" placeholder="">
+              </div>
+
+              <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">User Name</label>
+                <input required type="text" name="username" class="form-control" id="inputEmail4">
+              </div>
+
+              <div class="col-md-4">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input required type="password" name="password" class="form-control" id="inputPassword4">
+              </div>
+             
+              <div class="col-md-4">
+                <label for="id_college" class="form-label">College ID</label>
+                <input required type="text" name="id_college" class="form-control" id="id_college">
+              </div>
+
+              <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">Department</label>
+                <input required type="text" name="department" class="form-control" id="inputEmail4">
+              </div>
+              <div class="col-md-4">
+               
+                  <label for="">Gender</label>
+                  <select class="form-select" name="gender" id="">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    
+                  </select>
+               
+              </div>
+            
+              <div class="col-md-4">
+                <label for="inputAddress" class="form-label">Age</label>
+                <input required type="text" name="age" class="form-control" id="inputAddress" placeholder="">
+              </div>
+              <hr  class=" btn-Dark_blue">
+              <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">E-mail Parnet</label>
+                <input required type="text" name="emailparnet" class="form-control" id="inputEmail4">
+              </div>
+         {% csrf_token %}
+            <div class="col-6">
+              <label for="inputEmail4" class="form-label">Parent National Id</label>
+              <input required type="text" name="parent_national_id" class="form-control" id="inputEmail4">
+            </div>
+         
+          
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            {% if ExtraPermissions.delete_student %}
+            <button type="submit" name="ADDStudent" class="btn btn-primary">Save</button>
+            {% endif%}
+          
+          </div>
+              </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modelId1" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen-lg-down col-8" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa-solid fa-user-pen"></i>  Edit Student</h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <form action="" method="post">
+          <div class="modal-body">
+            <div class="container-fluid row row g-3">
+              <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">First Name</label>
+                <input required type="text" name="efirstname"  id="efirstname" class="form-control" >
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Last Name</label>
+                <input required type="text" name="elastname" id="elastname" class="form-control" >
+              </div>
+              
+              <div class="col-md-6">
+                <label for="inputAddress" class="form-label">E-mail</label>
+                <input required type="email" name="eemail" id="eemail" class="form-control"  placeholder="">
+                   <input required hidden type="email" name="cemail" id="cemail" class="form-control"  placeholder="">
+              </div>
+
+              <div class="col-md-6">
+                <label for="inputAddress" class="form-label">National_Id</label>
+                <input required type="text" name="enational_id" id="enational_id" class="form-control"  placeholder="">
+              </div>
+
+              <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">User Name</label>
+                <input required type="text" name="eusername" id="eusername" class="form-control" >
+                  <input required hidden type="text" name="cusername" id="cusername" class="form-control" >
+              </div>
+
+              
+             
+              <div class="col-md-6">
+                <label for="id_college" class="form-label">College ID</label>
+                <input required type="text" name="eid_college"  id="eid_college" class="form-control" >
+              </div>
+
+              <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">Department</label>
+                <input required type="text" name="edepartment" id="edepartment" class="form-control" >
+              </div>
+              <div class="col-md-4">
+                <label for="" class="" >Gender</label>
+                  <label for="" name="egender" id="egender" class="form-control" >Gender</label>
+          
+              </div>
+            
+              <div class="col-md-4">
+                <label for="inputAddress" class="form-label">Age</label>
+                <input required type="text" name="eage" class="form-control" id="eage" placeholder="">
+              </div>
+              <hr  class=" btn-Dark_blue">
+
+                <div class="col-md-6 form-check">
+                  <input type="checkbox" name="eactive" class="form-check-input" id="eactive" checked/>
+                  <label class="form-check-label" for="check1">Active</label>
+                </div>
+         
+          
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+            {% if ExtraPermissions.update_student %}
+            <button type="submit" name="EditStudent" class="btn btn-primary">Save</button>
+            {% endif %}
+              
+            
+          </div>
+          {% csrf_token %}
+              </form>
+        </div>
+      </div>
+    </div>
+   <button id="btn_error" hidden type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        </button>
+
+        {% if error %}
+            <script>
+                window.onload = function (){
+                    document.getElementById('btn_error').click()
+                }
+            </script>
+        {% endif %}
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Failure occurred!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center">
+                  <b class="text-danger">
+                      {{ error }}
+                  </b>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="{% static 'js/bootstrap.bundle.min.v5.js' %}"></script>
+<script>
+  let tbl=document.getElementById('tablestudent');
+for(var i=1 ;i < tbl.rows.length;i++)
+{
+  tbl.rows[i].onclick =function(){
+        document.getElementById('efirstname').value =this.cells[0].innerHTML;
+        document.getElementById('elastname').value  =this.cells[1].innerHTML;
+        document.getElementById('eusername').value=this.cells[2].innerHTML;
+        document.getElementById('cusername').value=this.cells[2].innerHTML;
+
+        document.getElementById('eemail').value=this.cells[3].innerHTML;
+        document.getElementById('cemail').value=this.cells[3].innerHTML;
+
+        document.getElementById('eid_college').value =this.cells[4].innerHTML;
+        document.getElementById('edepartment').value=this.cells[5].innerHTML;
+        document.getElementById('egender').innerHTML  =this.cells[6].innerHTML;
+        document.getElementById('enational_id').value  =this.cells[8].innerHTML;
+
+        document.getElementById('eage').value=this.cells[7].innerHTML;
+
+        let c =$(this.cells[10].innerHTML).prop("checked")
+        if(c)
+        $('#eactive').prop("checked" ,true);
+        else  $('#eactive').prop("checked" ,false);
+
+      
+        
+    }
+
+    
+}
+</script>
+  </body>
+</html>

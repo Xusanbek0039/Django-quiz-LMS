@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>LMS</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+{#		<link rel="stylesheet" href="assets/css/main.css" />#}
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+{#		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>#}
+        <noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#one">Who we are</a></li>
+							<li><a href="#two">What we do</a></li>
+							<li><a href="#three">Address</a></li>
+							<li><a href="{% url 'contact-us' %}">Get Contact us</a></li>
+							<li><a href="{% url 'blog' %}">Blog</a></li>
+							<li><a href="{% url 'companies-view' %}">Companies</a></li>
+							<li><a href="{% url 'make-request' %}">Become company</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>Welcome in Kanemy-LMS</h1>
+							<p>Welcome, we are glad to have you.
+								We wish you to enjoy an enjoyable and useful educational stage.
+								And good service </p>
+							<ul class="actions">
+{#								<li><a href="#one" class="button scrolly">Learn more</a></li>#}
+                                <li><a href="{% url 'contact-us' %}" class="button scrolly">Get Contact us</a></li>
+                                <li><a href="{% url 'blog' %}" class="button scrolly">Blog</a></li>
+                                <li><a href="{% url 'companies-view' %}" class="button scrolly">Companies</a></li>
+                                <li><a href="{% url 'make-request' %}" class="button scrolly">Become company</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+{#							<a href="#" class="image"><img src="{% static 'photo/sub_home.webp' %}" alt="" data-position="center center" /></a>#}
+							<img class="image" src="{% static 'photo/sub_home.webp' %}" alt="" data-position="center center" />
+							<div class="content">
+								<div class="inner">
+									<h2>We are students graduation year</h2>
+									<p>We are students who are candidates for graduation, and this is a graduation project for us, in which we offer distance education, e-learning
+										We are computer science students, and through this project, we offer you programming an educational platform that is available to colleges, universities, schools and educational courses.</p>
+{#									<ul class="actions">#}
+{#										<li><a href="generic.html" class="button">Learn more</a></li>#}
+{#									</ul>#}
+								</div>
+							</div>
+						</section>
+
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>What we do</h2>
+							<p> A learning management system (LMS) is a software application for the administration, documentation, tracking, reporting, automation, and delivery of educational courses, training programs, or learning and development programs.
+								an educational platform that is available to colleges, universities, schools and educational courses.
+								We offer companies through which we offer a number of users, a supervisor, a doctor, and students in exchange for a service
+							</p>
+							<div class="features">
+								<section>
+
+                                    <span class="icon solid major fas fa-users-cog"></span>
+									<h3>Admin</h3>
+									<p>We solve for him according to the desire of the advanced company, the specified number,
+										and we also specify for him characteristics such as creating a number of doctor and students and adding courses
+									</p>
+								</section>
+								<section>
+									<!-- <span class="icon solid major fas fa-chalkboard-teacher"> </span> -->
+                                    <span class="icon solid major fas fa-chalkboard-teacher"></span>
+									<h3>Instructor</h3>
+									<p>
+										We solve it according to the desire of the advanced company, the specified number, and we also specify for it features such as adding course content, task, quiz, availability, and publications to communicate with students
+									</p>
+								</section>
+								<section>
+                                    <span class="icon solid major fas fa-user-graduate"></span>
+									<h3>Student</h3>
+									<p>
+										He can see the course content, test date and exam through the website, add it and raise the application to the doctor
+									</p>
+								</section>
+								<section>
+									<span class="icon solid major fas fa-restroom"></span>
+									<h3>Parent</h3>
+									<p>
+										He can see his children, report on his son, test dates and test bikes
+									</p>
+								</section>
+
+							</div>
+{#							<ul class="actions">#}
+{#								<li><a href="generic.html" class="button">Learn more</a></li>#}
+{#							</ul>#}
+						</div>
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Get Contact us</h2>
+							<p>We are happy to contact us or add any suggestion and comment that helps us to progress for the better</p>
+							<div class="split style1">
+								<section>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Name</label>
+												<input type="text" name="name" id="name" />
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												<input type="text" name="email" id="email" />
+											</div>
+											<div class="field">
+												<label for="message">Message</label>
+												<textarea name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><a href="" class="button submit">Send Message</a></li>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<ul class="contact">
+										<li>
+											<h3>Address</h3>
+											<span>103 Education Street <br />
+											Cairo<br />
+											Egypt</span>
+										</li>
+										<li>
+											<h3>Email</h3>
+											<a href="#">Kanemy-LMS@LMS.org</a>
+										</li>
+										<li>
+											<h3>Phone</h3>
+											<span>(000) 000-000</span>
+										</li>
+										<li>
+											<h3>Social</h3>
+											<ul class="icons">
+												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+												<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+{#			<script src="assets/js/jquery.min.js"></script>#}
+            <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+{#            <script src="{% static 'js/jquery-min.js' %}"></script>#}
+{#			<script src="assets/js/jquery.scrollex.min.js"></script>#}
+            <script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+
+{#			<script src="assets/js/jquery.scrolly.min.js"></script>#}
+            <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+
+{#			<script src="assets/js/browser.min.js"></script>#}
+            <script src="{% static 'assets/js/browser.min.js' %}"></script>
+
+{#			<script src="assets/js/breakpoints.min.js"></script>#}
+            <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+
+{#			<script src="assets/js/util.js"></script>#}
+            <script src="{% static 'assets/js/util.js' %}"></script>
+
+{#			<script src="assets/js/main.js"></script>#}
+            <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+	</body>
+</html>

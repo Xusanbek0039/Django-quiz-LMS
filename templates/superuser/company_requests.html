@@ -1,0 +1,160 @@
+{% extends 'baseSidebar.html' %}
+
+{% block title %}
+  Companies| Requests 
+{% endblock title %}
+
+{% block userPage %}
+	<h1 class="text-center mt-5">Companies requests</h1>
+	<div class="col-10 offset-1 mt-5">
+		<table class="table table-secondary table-hover">
+			<thead>
+				<tr>
+					<th>Company name</th>
+					<th>Admins number</th>
+					<th>Instructor number</th>
+					<th>Student number</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Is signup</th>
+					<th>Contact e-mail</th>
+					<th>Status</th>
+					<th>Manage</th>
+					<th>Del</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for data in comapny_requests %}
+				  <tr>
+						<td>{{data.company_name}}</td>
+						<td>{{data.admins_number}}</td>
+						<td>{{data.instrauctors_number}}</td>
+						<td>{{data.students_number}}</td>
+						<td>{{data.start}}</td>
+						<td>{{data.end}}</td>
+						<td>{{data.is_sign_up}}</td>
+						<td>{{data.contact_email}}</td>
+						<td>{{data.status}}</td>
+						<td><a class="btn btn-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button" id="manageId" data_id="{{data.id}}">Manage</a></td>
+                        <td><a href="{% url 'super-user-del-requests' data.id %}" class="btn btn-danger">Remove</a> </td>
+				  </tr>
+				{% endfor %}
+	
+			</tbody>
+		</table>
+	</div>
+
+
+	
+	<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalToggleLabel">Manage the company</h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body" id="modalBody">
+			  
+			</div>
+			<!-- <div class="modal-footer">
+			</div> -->
+		  </div>
+		</div>
+	  </div>
+
+	  <script>
+		  const loc = window.location.origin
+		  $('#manageId').click(function(){
+			  $.ajax({
+				  method: 'POST',
+				  url: `${loc}/super/dashboard/company-requests/data/`,
+				  data:{
+					id: $('#manageId').attr('data_id'),
+				  },
+				  success: function(response){
+					  console.log(response.description)
+					  $('#modalBody').html(`
+					  	<div class="container">
+							<form method='post' class="row g-3">{% csrf_token %}
+								<textarea name="description" id="description" cols="30" rows="1000" hidden></textarea>
+								<input type="number" value=${response.id} name="id" id="id" hidden>
+
+								<div class="col-12">
+									<label for="company_name" class="form-label">Company name*</label>
+									<input type="text" class="form-control" name="company_name" id="company_name" value=${response.company_name} required>
+								</div>
+								<div class="col-md-4">
+									<label for="number_of_admin" class="form-label">Admins company*</label>
+									<input type="number" class="form-control" name="number_of_admin" id="number_of_admin" value=${response.admin_num} required>
+								</div>
+								<div class="col-md-4">
+									<label for="number_of_instructor" class="form-label">Instructors company*</label>
+									<input type="number" class="form-control" name="number_of_instructor" id="number_of_instructor" value=${response.ins_num} required>
+								</div>
+								<div class="col-md-4">
+									<label for="number_of_student" class="form-label">Students company*</label>
+									<input type="number" class="form-control" name="number_of_student" id="number_of_student" value=${response.stu_num} required>
+								</div>
+								<div class="col-md-6">
+									<label for="start" class="form-label">Start at*</label>
+									<input type="date" class="form-control" name="start" id="start" value=${response.start} required>
+								</div>
+								<div class="col-md-6">
+									<label for="end" class="form-label">End at*</label>
+									<input type="date" class="form-control" name="end" id="end" value=${response.end} required>
+								</div>
+								<div class="col-md-6">
+									<label for="email" class="form-label">E-mail*</label>
+									<input type="email" class="form-control" name="email" id="email" value=${response.cont_email} required>
+								</div>
+								<div class="col-md-6">
+									<label for="sign" class="form-label">Sign*</label>
+									<input type="text" class="form-control" name="sign" id="sign" value=${response.sign_up} required>
+								</div>
+								<div class="col-12">
+									<label for="sign" class="form-label">Status*</label>
+									<select class="form-select" aria-label="Default select example" name="status" id="status" onchange="sel()">
+										<option value='pending' selected>Pending</option>
+										<option value='approved'>Approved</option>
+										<option value="rejected">Rejected</option>
+									</select>
+								</div>
+								<div class="col-12">
+									<div class="modal-footer">
+										<p id="ptype" class="lead text-muted"></p>
+										<button type="submit" class="btn btn-dark">Save</button>
+									</div>
+								</div>
+								
+							</form>
+						</div> 
+					  `)
+					  $('#description').text(`${response.description}`)
+
+				}
+
+			  })
+		  })
+		  const sel = () =>{
+			  if(document.getElementById('status').value == 'approved'){
+		
+				$('#ptype').text(`
+					Create company and user as main admin for this company,
+					Send mail for this user with the instructures.
+				`)
+			  }else if(document.getElementById('status').value == 'rejected'){
+		
+				$('#ptype').text(`
+					Request will delete....
+					send mail for this admin with the instructures.
+				`)
+			}else{
+
+				$('#ptype').text(``)
+			}
+
+		  }
+
+	  </script>
+	
+{% endblock userPage %}

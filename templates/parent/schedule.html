@@ -1,0 +1,247 @@
+
+		{% load static %}
+    <html lang="en">
+    
+    <head>
+      <title>Kanmey Lms</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+      <link rel="stylesheet" href="{% static 'sidebar.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+      <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+      <!-- CSS only -->
+      <link
+      rel="stylesheet"
+    
+      href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css"
+    > 
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    
+      <script src="{% static 'js/popper.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    
+    
+      <style>
+        body {
+          background-image: url('');
+        }
+    
+        hr {
+          background-color: white;
+        }
+    
+        .scroll ::-webkit-scrollbar {
+          width: 5px;
+          height: 5px;
+    
+        }
+    
+        .scroll ::-webkit-scrollbar-track {
+          background-color: #6c757d;
+        }
+    
+        .scroll ::-webkit-scrollbar-thumb {
+          background-color: #05142276;
+        }
+    
+        .scroll ::-webkit-scrollbar-thumb:hover {
+          background-color: #071522;
+        }
+        .ul.breadcrumb {
+        border-radius: 0px;
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #11101d;
+}
+
+      .ul.breadcrumb .li {
+  display: inline;
+  font-size: 18px;
+  color:rgb(69, 171, 255) ;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+.ul.breadcrumb .li+.li:before {
+  padding: 8px;
+  color: rgb(255, 251, 251);
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+.ul.breadcrumb .li .a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+.ul.breadcrumb .li .a:hover {
+  color: #b3d6f4;
+  text-decoration: underline;
+}
+      </style>
+    </head>
+    
+    <body scroll>
+    
+      <div class="sidebar">
+        <div class="logo_content">
+          <div class="logo">
+            <i class='bx bxl-kickstarter'></i>
+            <div class="logo_name">
+              anemy Lms
+            </div>
+            <br>
+    
+          </div>
+          <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+    
+          <li>
+    
+            <a href="{% url 'parent_home' %}">
+              <i class='bx bxs-home'></i>
+              <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+            <hr>
+    
+          </li>
+    
+          <li>
+    
+            <a href="{% url 'parent_student' %}">
+             
+              <i class="fa-solid fa-children"></i>
+              <span class="links_name"> My Children</span>
+            </a>
+            <span class="tooltip"> My Children</span>
+            <hr>
+    
+          </li>
+    
+          <!-- fas fa-chalkboard-teacher -->
+    
+        </ul>
+        <div class="profile_content">
+          <div class="profile">
+            <div class="profile_details">
+              <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt=" image ">
+              <div class="name_job">
+                <div class="name"><a title="Profile" href="">{{user.first_name }} {{ user.last_name}}</a> </div>
+                <div class="job">{{user.instructor_type}}</div>
+              </div>
+            </div>
+            <a href="{% url 'logout-view' %}"><i class='bx bx-log-out' id="log_out"></i></a>
+          </div>
+        </div>
+      </div>
+       
+      <script>
+         
+        let btn = document.querySelector('#btn')
+       let sidebar = document.querySelector('.sidebar')
+    
+       btn.onclick = function () {
+         sidebar.classList.toggle('active')
+       }
+      </script>
+      <div class="wrapper  align-items-stretch home_content">
+    
+        <!-- Page Content  -->
+        <div id="content" class=" justify-content-center ">
+          <ul class="ul breadcrumb ">
+            <li class="li"><a class="a"  href="{% url 'parent_home' %}">Home</a></li>
+            
+            <li class="li"><a class="a"  href="{% url 'parent_student' %}">My Children</a></li>
+
+            <li class="li">Report Task || Quiz</li>
+            
+          </ul>
+    
+    
+    
+        <!-- Page Content  -->
+      <div id="content" class="py-4 scroll container row offset-2">
+          <h1 class="text-center" style="margin-top: 100px">{{ schedule_name| capfirst }} reports</h1>
+        <div class="col-5 mt-5" id="ma" style ="overflow-y: scroll;">
+          <table class="table table-dark table-hover">
+            <tr>
+              <th>#</th> <th>task name </th> <th>degree</th>
+            </tr>
+
+            <tbody style="height:20px; ">
+              {% for task_report in  task_report %}
+
+              <tr>
+                <th>{{task_report.n}}</th> <th>{{task_report.task_report.std_task_name}}</th> <th>{{task_report.task_report.std_task_d}}</th>
+              </tr>
+              
+              {% endfor %}
+              <tr>
+                <th colspan="2">Total</th> <th>{{sum}}</th>
+              </tr>
+            </tbody>
+
+
+          </table>
+        </div>
+        <div class="col-3 mt-5" id="ma1" style ="overflow-y: scroll;" >
+          <table class="table table-dark table-hover" >
+            
+           
+            <tr>
+              <th>task_report.n</th>
+            </tr>
+            
+              
+            
+          </table>
+        </div>
+        <div class="col-3 mt-5">
+          <table class="table table-dark table-hover" >
+              <thead>
+                <tr>
+                  <th>Schedule quizs result </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for q in my_quizes %}
+                    <tr>
+                        <td><a href="{% url 'my-chil-quiz-report' username q.id  %}" style="color: #fff">{{ q.name }}</a></td>
+                    </tr>
+                {% endfor %}
+
+              </tbody>
+
+
+
+
+
+          </table>
+
+
+        </div>
+               
+           </div>
+        </div>
+    
+        </div>
+    <script>
+       document.getElementById("ma").style.height =((window.innerHeight)-200)+"px";
+       document.getElementById("ma1").style.height =((window.innerHeight)-200)+"px";
+
+        $(window).on('resize', function(e){
+          document.getElementById("ma").style.height =((window.innerHeight)-200)+"px";
+          document.getElementById("ma1").style.height =((window.innerHeight)-200)+"px";
+        });
+    </script>
+        
+      </body>
+    </html>

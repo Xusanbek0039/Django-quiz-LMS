@@ -1,0 +1,22 @@
+body {
+    font-family: Poppins;
+
+    /* background-image: url("../image/LoginInBG.png"); */
+    /* background-image: url("../photo/CHI-1.png"); */
+
+    background-repeat : no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+h1 , h2 , h3 , h4 , h5 , h6 {
+        font-family: Poppins;
+}

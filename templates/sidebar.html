@@ -1,0 +1,188 @@
+{% load static %}
+<div class="sidebar">
+    <div class="logo_content">
+        <div class="logo">
+            <i class='bx bxl-c-plus-plus' ></i>
+            <div class="logo_name">
+                <!-- Dashboard -->
+                {% if request.user.is_superuser %}
+                  Superuser
+                {% endif %}
+            </div>
+        </div>
+        <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav_list">
+
+        <li>
+            {% if request.user.is_superuser %}
+                <a href="{% url 'super-user-company-requests' %}">
+                    <i class='bx bx-git-pull-request' ></i>
+                    <span class="links_name">Requests</span>
+                </a>
+                <span class="tooltip">Requests</span>
+                <hr>
+            {% else %}
+                <a href="#">
+                    <i class='bx bxs-user' ></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+                <hr>
+            {% endif %}
+        </li>
+        
+
+        <li>
+            {% if request.user.is_superuser %}
+                <a href="{% url 'all-companies' %}">
+                    <i class='bx bxs-city'></i>
+                    <span class="links_name">Companies</span>
+                </a>
+                <span class="tooltip">Companies</span>
+                <hr>
+            {% else %}
+                <a href="#">
+                    <i class='bx bxs-chat' ></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+                <hr>
+            {% endif %}
+        </li>
+        
+
+        <li>
+            {% if request.user.is_superuser %}
+                <a href="{% url 'super-all-admins' %}">
+                    <i class='bx bxs-user-badge'></i>
+                    <span class="links_name">Admins</span>
+                </a>
+                <span class="tooltip">Admins</span>
+                <hr>
+            {% else %}
+                <a href="#">
+                    <i class='bx bx-pie-chart-alt-2' ></i>
+                    <span class="links_name">Analytics</span>
+                </a>
+                <span class="tooltip">Analytics</span>
+                <hr>
+            {% endif %}
+            
+        </li>
+        
+
+        <li>
+
+            {% if request.user.is_superuser %}
+                <a href="{% url 'super-all-instructors' %}">
+                    <i class='bx bxs-graduation'></i>
+                    <span class="links_name">Instructors</span>
+                </a>
+                <span class="tooltip">Instructors</span>
+                <hr>
+            {% else %}
+                <a href="{% url 'super-all-instructors' %}">
+                    <i class='bx bxs-graduation'></i>
+                    <span class="links_name">Instructors</span>
+                </a>
+                <span class="tooltip">Instructors</span>
+                <hr>
+            {% endif %}
+
+            
+        </li>
+        
+
+        <li>
+            {% if request.user.is_superuser %}
+                <a href="{% url 'super-all-students' %}">
+                    <i class='bx bxs-book-reader'></i>
+                    <span class="links_name">Students</span>
+                </a>
+                <span class="tooltip">Students</span>
+                <hr>
+            {% else %}
+                <a href="{% url 'super-all-students' %}">
+                    <i class='bx bxs-book-reader'></i>
+                    <span class="links_name">Students</span>
+                </a>
+                <span class="tooltip">Students</span>
+                <hr>
+            {% endif %}
+
+        </li>
+        
+
+        <li>
+            {% if request.user.is_superuser %}
+                <a href="{% url 'super-all-parents' %}">
+                    <i class='bx bx-male-female'></i>
+                    <span class="links_name">Parents</span>
+                </a>
+                <span class="tooltip">Parents</span>
+                <hr>
+            {% else %}
+                <a href="{% url 'super-all-parents' %}">
+                    <i class='bx bx-male-female'></i>
+                    <span class="links_name">Parents</span>
+                </a>
+                <span class="tooltip">Parents</span>
+                <hr>
+            {% endif %}
+        </li>
+
+        <li>
+            {% if request.user.is_superuser %}
+                <a href="{% url 'super-msg' %}">
+                    <i class='bx bxs-message-square-dots'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+                <hr>
+            {% else %}
+                <a href="{% url 'super-msg' %}">
+                    <i class='bx bxs-message-square-dots'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+                <hr>
+            {% endif %}
+        </li>
+        
+
+        {% comment %} <li>
+            <a href="#">
+                <i class='bx bx-cog' ></i>
+                <span class="links_name">Setting</span>
+            </a>
+            <span class="tooltip">Setting</span>
+
+        </li> {% endcomment %}
+        
+    
+    </ul>
+    <div class="profile_content">
+        <div class="profile">
+            <div class="profile_details">
+                <img src="{% static 'photo/superuser/super.png' %}" alt="">
+                <div class="name_job">
+                    <div class="text-end" style="margin-left: 30px;">{{ request.user.username | capfirst }}</div>
+                    <!-- <div class="job h2">Superuser</div> -->
+                </div>
+            </div>
+            <a href="{% url 'logout-view' %}" style="color: #fff;"><i class='bx bx-log-out' id="log_out"></i></a>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    let btn = document.querySelector('#btn')
+    let sidebar = document.querySelector('.sidebar')
+
+    btn.onclick = function(){
+        sidebar.classList.toggle('active')
+    }
+</script>

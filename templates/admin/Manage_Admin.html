@@ -1,0 +1,1248 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <title>Kanmey Lms</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% comment %}
+  <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet"> -->
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  {% endcomment %}
+
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="{% static 'sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="{% static 'js/jquery-min.js' %}"></script>
+
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+  <style>
+      .modal-dialog {
+          max-width: 700px;
+          margin: 1.75rem auto;
+      }
+    body {
+      background-image: url('');
+    }
+
+    hr {
+      background-color: white;
+    }
+
+    .scroll ::-webkit-scrollbar {
+      width: 1px;
+
+    }
+
+    .scroll ::-webkit-scrollbar-track {
+      background-color: #6c757d;
+    }
+
+    .scroll ::-webkit-scrollbar-thumb {
+      background-color: #6c757d;
+    }
+
+    .scroll ::-webkit-scrollbar-thumb:hover {
+      background-color: #6c757d;
+    }
+  </style>
+</head>
+
+<body class=scroll>
+
+  <div class="sidebar">
+    <div class="logo_content">
+      <div class="logo">
+        <i class='bx bxl-kickstarter'></i>
+        <div class="logo_name">
+          anemy Lms
+        </div>
+        <br>
+
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav_list">
+
+      <li>
+
+        <a href="{% url 'home_admin' %}">
+          <i class='bx bxs-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+        <hr>
+
+      </li>
+
+{% if  user.admin_type == "Main"  or  user.admin_type == "main"  %}
+
+
+      <li>
+        <a href="{% url 'course_admin' %}">
+          <i class="fas fa-book-open"></i>
+          <span class="links_name">Course</span>
+        </a>
+        <span class="tooltip">Course</span>
+        <hr>
+      </li>
+
+      <li>
+        <a href="{% url 'Schedule_admin' %}">
+          <i class='bx bx-table'></i>
+          <span class="links_name">Schedule </span>
+        </a>
+        <span class="tooltip">Schedule</span>
+        <hr>
+
+      </li>
+
+      <li>
+        <a href="{% url 'Schedule_instructor_admin' %}">
+
+          <i class="fa-solid fa-rectangle-history-circle-user"></i>
+          <span class="links_name">Schedule Instructor</span>
+        </a>
+        <span class="tooltip">Schedule Instructor</span>
+        <hr>
+      </li>
+
+
+      <li>
+        <a href="{% url 'Schedule_student_admin' %}">
+          <i class='fas fa-book-reader'></i>
+          <span class="links_name">Schedule Student</span>
+        </a>
+        <span class="tooltip">Schedule Student</span>
+        <hr>
+      </li>
+
+
+{% elif user.admin_type == "inherit"  or  user.admin_type == "Inherit" %}
+
+
+  {% if ExtraPermissions.add_course %}
+  <!-- course_admin -->
+        <li>
+          <a href="{% url 'course_admin' %}">
+            <i class="fas fa-book-open"></i>
+            <span class="links_name">Course</span>
+          </a>
+          <span class="tooltip">Course</span>
+          <hr>
+        </li>
+        {% endif %}
+    {% if ExtraPermissions.add_schedule %}
+    <!-- Schedule_admin -->
+
+    <li>
+      <a href="{% url 'Schedule_admin' %}">
+        <i class='bx bx-table'></i>
+        <span class="links_name">Schedule </span>
+      </a>
+      <span class="tooltip">Schedule</span>
+      <hr>
+
+    </li>
+    {% endif %}
+    {% if ExtraPermissions.add_instructor_schedule == True %}
+    <!-- Schedule_instructor_admin -->
+        <li>
+          <a href="{% url 'Schedule_instructor_admin' %}">
+
+            <i class="fa-solid fa-rectangle-history-circle-user"></i>
+            <span class="links_name">Schedule Instructor</span>
+          </a>
+          <span class="tooltip">Schedule Instructor</span>
+          <hr>
+        </li>
+        {% endif %}
+    {% if ExtraPermissions.add_student_schedule %}
+  <!-- Schedule_student_admin -->
+  <li>
+    <a href="{% url 'Schedule_student_admin' %}">
+      <i class='fas fa-book-reader'></i>
+      <span class="links_name">Schedule Student</span>
+    </a>
+    <span class="tooltip">Schedule Student</span>
+    <hr>
+  </li>
+  {% endif %}
+
+{% endif %}
+
+
+
+
+      <!-- fas fa-chalkboard-teacher -->
+
+    </ul>
+    <div class="profile_content">
+      <div class="profile">
+        <div class="profile_details">
+          <img src="{% static 'photo/user_type/admin.png' %}" alt=" image ">
+          <div class="name_job">
+            <div class="name"><a title="Profile" class="text-white" href="{% url 'my-info' %}">{{user.first_name }} {{ user.last_name}}</a> </div>
+            <div class="job">{{user.admin_type}}</div>
+          </div>
+        </div>
+        <a href="{% url 'logout-view' %}"><i class='bx bx-log-out text-white' id="log_out"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let btn = document.querySelector('#btn')
+    let sidebar = document.querySelector('.sidebar')
+
+    btn.onclick = function () {
+      sidebar.classList.toggle('active')
+    }
+  </script>
+  <div class="wrapper  align-items-stretch home_content">
+
+    <!-- Page Content  -->
+    <div id="content" class=" justify-content-center ">
+      <header>
+
+        <div class="px-3 py-2 bg-Dark_blue text-white">
+          <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+
+              <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+
+                <!--  -->
+                <!--  -->
+                <li>
+                  <div class="dropdown ">
+                    <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Manage Users
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+
+
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'manage_admin' %}"><i class="fa-solid fa-user-gear"></i>
+                        &nbsp; Manage Admin </a>
+                      <div class="dropdown-divider"></div>
+
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'manage_instructor' %}"><i class="fa-solid fa-user-tie"></i>
+                        &nbsp; Manage Instructor </a>
+                      <div class="dropdown-divider"></div>
+
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'manage_Student' %}"><i class="fa-solid fa-users"></i>
+                        &nbsp; Manage Student </a>
+                      <div class="dropdown-divider"></div>
+
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'manage_parent' %}"><i class="fa-solid fa-family"></i>
+                        &nbsp; Manage Parent </a>
+                      <div class="dropdown-divider"></div>
+
+                    </div>
+                  </div>
+                </li>
+                <!--  -->
+
+                <!--  -->
+                <li>
+                  <div class="dropdown ">
+                    <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Schedule
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                      {% for Schedule_company in Schedule_company %}
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'manage_Schedule' Schedule_company.schedule_name %}">
+                        <i class='bx bx-table'></i> &nbsp; {{Schedule_company.schedule_name}}</a>
+                      <div class="dropdown-divider"></div>
+                      {% endfor %}
+
+
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="dropdown ">
+                    <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Request
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+
+
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'Request_instructor' %}"><i
+                          class="fa-solid fa-user-plus"></i> &nbsp; Request Instructor </a>
+                      <div class="dropdown-divider"></div>
+
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'Request_Student' %}"><i
+                          class="fa-solid fa-person-circle-plus"></i> &nbsp; Request Student </a>
+                      <div class="dropdown-divider"></div>
+
+
+
+                    </div>
+                  </div>
+                </li>
+
+
+                <li>
+                  <a href="{% url 'Statistics' %}" class="nav-link text-white">
+                    Statistics
+                  </a>
+                </li>
+
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+
+      </header>
+
+
+
+      <!-- Page Content  -->
+      <div id="content" class="py-4 ">
+
+        <div class="container">
+              <h1 class="text-center" style="margin-top: 50px">Manage admins</h1>
+          <div class="container" style="margin-top: 100px; margin-left: 60px">
+
+            <div class="container">
+              <table id="tableAdmin" class="table table-striped table-inverse table-responsive col-12">
+                <thead class="thead-inverse">
+                  <tr>
+                    <td>First name</td>
+                    <td>Last name</td>
+                    <td>username</td>
+                    <td>E-mail</td>
+
+                    <td>last_login</td>
+
+                    <td>Type</td>
+                    <td>Active</td>
+                    {% if ExtraPermissions.update_admin %}
+                    <td style="color: black;"> Edit</td>
+                    {%endif%}
+                    
+                    {% if ExtraPermissions.delete_admin %}
+                    <td style="color: black;"> Deleted</td>
+                    {% endif %}
+
+                  </tr>
+                </thead>
+                <tbody>
+
+
+
+
+                  {% for AdminAccount in AdminAccount %}
+                  <tr>
+
+                    <td>{{AdminAccount.first_name}}</td>
+                    <td>{{AdminAccount.last_name}}</td>
+                    <td>{{AdminAccount.username}}</td>
+                    <td>{{AdminAccount.email}}</td>
+
+                    <td>{{AdminAccount.last_login}}</td>
+
+
+                    <td>{{AdminAccount.admin_type}}</td>
+                    {% if AdminAccount.is_active %}
+                    <td><input type="checkbox" name="" checked="{{AdminAccount.is_active}}" id="{{AdminAccount.id}}">
+                    </td>
+                    {% else %}
+                    <td><input type="checkbox" name="" id="{{AdminAccount.id}}"></td>
+                    {% endif %}
+
+                    {% if ExtraPermissions.update_admin %}
+                    <td><a  data-toggle="modal" data-target="#modelId1"  class="btn btn-outline-dark" href="#">Edit</a></td>
+                     
+                      {%endif%}
+
+                    {% if ExtraPermissions.delete_admin %}
+                    {% if user.id == AdminAccount.id %}
+                    <td></td>
+                    {% else %}
+                    {% if user.admin_type == "inherit" and AdminAccount.admin_type == "Main" %}
+                    <td style="color: black;"><a class="btn btn-outline-dark" href="#">not Deleted</a></td>
+                    {% else %}
+                    <td style="color: black;"><a class="btn btn-outline-dark"
+                        href="{% url 'DeleteAdmin' AdminAccount.id AdminAccount.username  %}"> Deleted</a></td>
+                    {% endif %}
+
+                    {% endif %}
+                    {% endif %}
+
+                  </tr>
+                  {% endfor %}
+
+
+
+
+                </tbody>
+              </table>
+              {% if ExtraPermissions.add_admin %}
+                  <div class="offset-4">
+                                <button type="button" data-toggle="modal" data-target="#modelId"
+                  class="btn btn-outline-dark"> ADD Admin</button>
+                  </div>
+
+
+
+
+
+              <!-- Modal -->
+              <div class="modal fade col-12" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen-lg-down" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Add Admin</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="" method="post">
+                      {% csrf_token %}
+                      <div class="modal-body">
+
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col">
+                              First name:
+                              <input type="text" name="firstname" class="form-control" placeholder="First name"
+                                aria-label="First name" required>
+                            </div>
+                            <div class="col">
+                              Last name :
+                              <input type="text" name="lastname" class="form-control" placeholder="Last name"
+                                aria-label="Last name" required>
+                            </div>
+                          </div>
+                          <div class="  container">
+                            E - mail :
+                            <input type="email" name="email" id="" class="form-control " placeholder=" E-mail :"
+                              aria-describedby="helpId" required>
+
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              User Name:
+                              <input type="text" class="form-control" name="username" placeholder="User Name"
+                                aria-label="First name" required>
+                            </div>
+                            <div class="col">
+                              Password :
+                              <input type="password" class="form-control" name="Password" placeholder="Password"
+                                aria-label="Last name" required>
+                            </div>
+                          </div>
+                          Type
+                          <select class="form-select" id="Type" name="Type" aria-label="Default select example">
+
+                            <option value="main">Main</option>
+                            <option value="inherit" selected>Inherit</option>
+
+                          </select>
+                          <br>
+                          <div class="row gy-2 gx-3 align-items-center" id="ExtraPermissions">
+                            <!-- -------------- -->
+                            <div class="row col-4">
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Admin[0]" type="checkbox" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  ADD Admin
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="Admin[1]" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Edit Admin
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="Admin[2]" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Admin
+                                </label>
+                              </div>
+                            </div>
+
+                          </div>
+                            <!-- --------------------------- -->
+                            <div class="row col-4">
+
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="Doctor[0]" type="checkbox" id="autoSizingCheck">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    ADD Doctor
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="Doctor[1]" type="checkbox" id="autoSizingCheck">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Edit Doctor
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="Doctor[2]" type="checkbox" id="autoSizingCheck">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Delete Doctor
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          <div class="row col-4">
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Assistant[0]" type="checkbox"
+                                  id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Add Assistant
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Assistant[1]" type="checkbox"
+                                  id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Edit Assistant
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Assistant[2]" type="checkbox"
+                                  id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Assistant
+                                </label>
+                              </div>
+                            </div>
+
+                          </div>
+                          <br>
+                          <hr>
+                          <div class="row col-4">
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Trainer[0]" type="checkbox" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Add Trainer
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Trainer[1]" type="checkbox" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Edit Trainer
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="Trainer[2]" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Trainer
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row col-4">
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="Student[0]" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  ADD Student
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Student[1]" type="checkbox" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Edit Student
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Student[2]" type="checkbox" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Student
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row col-4">
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="Course[0]" type="checkbox" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  ADD Course
+                                </label>
+                              </div>
+                            </div>
+
+
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="add_schedule" id="addschedule">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Add Schedule
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <hr>
+                          <div class="row col-6">
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="add_instructor_schedule" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Add Instructor Schedule
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="delete_instructor_schedule" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Instructor Schedule
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                            <!-- <hr> -->
+                            <div class="row col-6">
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="add_student_schedule" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Add student schedule
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="Course[1]" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Student Schdule
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input name="AddAdminS" id="" class="btn btn-primary" type="submit" value="save">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {%endif%}
+              {% if ExtraPermissions.update_admin %}
+              <div class="modal fade" id="modelId1" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen-lg-down col-7" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Edit Admin</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="" method="post">
+                      {% csrf_token %}
+                      <div class="modal-body">
+
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col">
+                              First name:
+                              <input type="text" name="E_firstname" id="E_firstname" class="form-control"
+                                placeholder="First name" aria-label="First name" required>
+                            </div>
+                            <div class="col">
+                              Last name :
+                              <input type="text" name="E_lastname" id="E_lastname" class="form-control"
+                                placeholder="Last name" aria-label="Last name" required>
+                            </div>
+                          </div>
+                          <div class="  container">
+                            E - mail :
+                            <input type="email" name="E_email" id="E_email" class="form-control " placeholder=" E-mail :"
+                              aria-describedby="helpId" required>
+                            <input hidden type="email" name="C_email" id="C_email"/>
+
+                          </div>
+
+                          <div class="col">
+                            User Name:
+                            <input type="text" class="form-control" id="E_username" name="E_username"
+                              placeholder="User Name" aria-label="First name" required>
+                            <input hidden type="text" class="form-control" id="C_username" name="C_username">
+                          </div>
+
+                            {% if user.admin_type == "main" or user.admin_type == "Main"  %}
+                            Type
+                            <select class="form-select" id="E_Type" name="E_Type" aria-label="Default select example">
+
+                              <option value="main">Main</option>
+                              <option value="inherit" selected>Inherit</option>
+  
+                            </select>
+                            {%else%}
+                           
+                            {% endif %}
+                          
+                          
+
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="Active" id="Active" value="Active">
+                              Active
+                            </label>
+                          </div>
+                          <br>
+                          <div class="row gy-2 gx-3 align-items-center" id="e_ExtraPermissions">
+                            <div class="row col-4">
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="e_Admin[0]" type="checkbox" id="a_admin">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    ADD Admin
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="e_Admin[1]" id="e_admin">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Edit Admin
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="e_Admin[2]" id="d_admin">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Delete Admin
+                                  </label>
+                                </div>
+                              </div>
+                          </div>
+                            <div class="row col-4">
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Doctor[0]" type="checkbox" id="a_doctor">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  ADD Doctor
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Doctor[1]" type="checkbox" id="e_doctor">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Edit Doctor
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Doctor[2]" type="checkbox" id="d_doctor">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Doctor
+                                </label>
+                              </div>
+                            </div>
+
+                           </div>
+                            <div class="row col-4">
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Assistant[0]" type="checkbox" id="a_assistant">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Add Assistant
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Assistant[1]" type="checkbox" id="e_assistant">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Edit Assistant
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Assistant[2]" type="checkbox" id="d_assistant">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Assistant
+                                </label>
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <hr>
+                            <div class="row col-4">
+
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Trainer[0]" type="checkbox" id="a_trainer">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Add Trainer
+                                </label>
+                              </div>
+                            </div>
+
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Trainer[1]" type="checkbox" id="e_trainer">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Edit Trainer
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="e_Trainer[2]" id="d_trainer">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Trainer
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row col-4">
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="e_Student[0]" id="a_student">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  ADD Student
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Student[1]" type="checkbox" id="e_student">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Edit Student
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Student[2]" type="checkbox" id="d_student">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Delete Student
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row col-4">
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" name="e_Course[0]" type="checkbox" id="a_course">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  ADD Course
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-auto">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="e_add_schedule" id="add_schedule">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                  Add Schedule
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <hr>
+                            <div class="row col-6">
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="e_add_student_schedule" id="add_student_schedule">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Add student schedule
+                                  </label>
+                                </div>
+                              </div>
+
+
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="e_Course[1]" id="d_course">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Delete Student Schedule
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row col-6">
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="e_add_instructor_schedule" id="add_instructor_schedule">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Add Instructor Schedule
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="col-auto">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" name="e_delete_instructor_schedule" id="delete_instructor_schedule">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Delete Instructor Schedule
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        <input name="EditAdminS" id="" class="btn btn-primary" type="submit" value="save">
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {%endif%}
+              <!--  -->
+              <!--  -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+        <button id="btn_error" hidden type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        </button>
+
+        {% if error %}
+            <script>
+                window.onload = function (){
+                    document.getElementById('btn_error').click()
+                }
+            </script>
+        {% endif %}
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Failure occurred!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center">
+                  <b class="text-danger">
+                      {{ error }}
+                  </b>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="{% static 'js/bootstrap.bundle.min.v5.js' %}"></script>
+
+  <script>
+
+
+
+      $("#ExtraPermissions").show();
+
+
+    $("#Type").change(function () {
+      if ($("#Type").val() == "inherit") {
+        $("#ExtraPermissions").show();
+      } else {
+        $("#ExtraPermissions").hide();
+      }
+    })
+
+    let tbl = document.getElementById('tableAdmin');
+    for (var i = 1; i < tbl.rows.length; i++) {
+      tbl.rows[i].onclick = function () {
+        document.getElementById('E_firstname').value = this.cells[0].innerHTML;
+        document.getElementById('E_lastname').value = this.cells[1].innerHTML;
+        document.getElementById('E_username').value = this.cells[2].innerHTML;
+        document.getElementById('C_username').value = this.cells[2].innerHTML;
+        document.getElementById('E_email').value = this.cells[3].innerHTML;
+        document.getElementById('C_email').value = this.cells[3].innerHTML;
+
+        console.log(this.cells[5].innerHTML)
+        if ($(this.cells[6].innerHTML).prop("checked")) {
+          $("#Active").prop('checked', true);
+        } else {
+          $("#Active").prop('checked', false);
+        }
+        // console.log(this.cells[6].innerHTML,$(this.cells[6].innerHTML).prop("checked"))
+
+
+        // select.selectedIndex = this.cells[5].innerHTML;
+        if (this.cells[5].innerHTML === "inherit") {
+
+          $("#e_ExtraPermissions").show();
+        } else {
+          $("#e_ExtraPermissions").hide();
+        }
+
+        let username = this.cells[2].innerHTML;
+        $.ajax({
+          type: "GET",
+          url: window.location.origin + "/adminCompany/Manage Admin",
+          dataType: "json",
+          data: { "dataget": "dataget", "username": username },
+          success: function (s) {
+            console.log(s)
+
+            if (s.add_admin) {
+              $("#a_admin").prop('checked', true);
+              console.log($("#a_admin").prop('checked'))
+            } else {
+              $("#a_admin").prop('checked', false);
+              console.log($("#a_admin").prop('checked'))
+            }
+
+            if (s.add_assistant) {
+              $("#a_assistant").prop('checked', true);
+            } else {
+              $("#a_assistant").prop('checked', false);
+            }
+
+            if (s.add_doctor) {
+              $("#a_doctor").prop('checked', true);
+            } else {
+
+              $("#a_doctor").prop('checked', false);
+            }
+            if (s.add_student) {
+              $("#a_student").prop('checked', true);
+            } else {
+              $("#a_student").prop('checked', false);
+            }
+            if (s.add_trainer) {
+              console.log(s.add_Trainer, " =>hjswgjhvh ")
+              $("#a_trainer").prop('checked', true);
+            } else {
+              $("#a_trainer").prop('checked', false);
+              console.log(s.add_Trainer, " =>hjswgjhvh ")
+            }
+            if (s.delete_admin) {
+              $("#d_admin").prop('checked', true);
+            } else {
+              $("#d_admin").prop('checked', false);
+            }
+            if (s.delete_assistant) {
+              $("#d_assistant").prop('checked', true);
+            } else {
+              $("#d_assistant").prop('checked', false);
+            }
+            if (s.delete_course) {
+              $("#d_course").prop('checked', true);
+            } else {
+              $("#d_course").prop('checked', false);
+            }
+
+
+
+            if (s.delete_doctor) {
+              $("#d_doctor").prop('checked', true);
+            } else {
+              $("#d_doctor").prop('checked', false);
+            }
+            if (s.delete_student) {
+              $("#d_student").prop('checked', true);
+            } else {
+              $("#d_student").prop('checked', false);
+            }
+            if (s.delete_trainer) {
+              $("#d_trainer").prop('checked', true);
+            } else {
+              $("#d_trainer").prop('checked', false);
+            }
+            if (s.add_course) {
+
+              $("#a_course").prop('checked', true);
+            } else {
+              $("#a_course").prop('checked', false);
+
+            }
+            if (s.update_admin) {
+
+              $("#e_admin").prop('checked', true);
+            } else {
+              $("#e_admin").prop('checked', false);
+
+            }
+            if (s.update_assistant) {
+
+              $("#e_assistant").prop('checked', true);
+            } else {
+              $("#e_assistant").prop('checked', false);
+
+            }
+
+            if (s.update_doctor) {
+
+              $("#e_doctor").prop('checked', true);
+            } else {
+              $("#e_doctor").prop('checked', false);
+
+            }
+            if (s.update_student) {
+
+              $("#e_student").prop('checked', true);
+            } else {
+              $("#e_student").prop('checked', false);
+
+            }
+            if (s.update_trainer) {
+
+              $("#e_trainer").prop('checked', true);
+            } else {
+              $("#e_trainer").prop('checked', false);
+
+            }
+// ---------------------------
+
+            if (s.add_schedule) {
+
+            $("#add_schedule").prop('checked', true);
+            } else {
+            $("#add_schedule").prop('checked', false);
+
+            }
+            if (s.add_instructor_schedule) {
+
+            $("#add_instructor_schedule").prop('checked', true);
+            } else {
+            $("#add_instructor_schedule").prop('checked', false);
+
+            }
+            if (s.delete_instructor_schedule) {
+
+                $("#delete_instructor_schedule").prop('checked', true);
+                } else {
+                $("#delete_instructor_schedule").prop('checked', false);
+
+                }
+
+
+            if (s.add_student_schedule) {
+
+            $("#add_student_schedule").prop('checked', true);
+            } else {
+            $("#add_student_schedule").prop('checked', false);
+
+            }
+
+
+
+          },
+          error: function (e) {
+            console.log("error", e)
+          }
+        })
+
+
+      }
+
+    }
+    $("#E_Type").change(function () {
+      if ($("#E_Type").val() == "inherit") {
+        $("#e_ExtraPermissions").show();
+      } else {
+        $("#e_ExtraPermissions").hide();
+      }
+    })
+
+  </script>
+</body>
+
+</html>

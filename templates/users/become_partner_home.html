@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'css/become_partner_home.css' %}">
+    <!-- <link rel="stylesheet" href="b.css"> -->
+    <title>Home | Become partner</title>
+</head>
+
+<body>
+    <div class="header">
+        <a href="#default" class="logo">KANEMY LMS</a>
+        <div class="header-right">
+            <a href="b.html">Company</a>
+        </div>
+    </div> 
+
+    <section>
+        <img class="im" src="{% static 'photo/22.jpeg' %}" alt="" style="margin-bottom: 100px;">
+    </section>
+    <!-- <p style="position: absolute; top: 70%; font-family: sans-serif;  text-align: center; font-weight: 750; left: 25%;">Take Advantage Of New ,Greater opportunities By Joining a partner ecosystem of <br> <br> recognized technology leaders. Citrix partners offer thire customers a competitive <br><br>
+    edge by providing evrything needes to deliver secure and flexable digital <br><br> Work Space
+    </p> -->
+    <div class="u">
+    </div>
+    <h1 class="custom">Partener With KANEMY LMS</h1>
+    <div class="mt-4"> <a href="{% url 'make-request' %}"><button class="btn btn-danger px-4 validate">Let's Started <span> </span>
+                <i style="font-size:14px;" class="fa">&#xf061;</i>
+            </button></a>
+    </div>
+    <!-- <div class="vl"></div> -->
+
+    <!-- <section>
+
+        <div class="container reval">
+       <div class="cards">
+      
+      
+       </div>
+               </div>
+           </section> -->
+    <div class="reval">
+        <p
+            style="position: absolute; top: 2%;color: #ffff; font-family: sans-serif; text-align: center; font-weight: 750; left: 6%;">
+            Benifits of being a citrix <br> <br> partner <br> <br> <br> <br> <br> Take Advantage of Finanicial
+            incentives and <br><br> spicail offers to drive opportunities for ypur <br><br> business. <br><br><br>
+            Leverageonline Training and certification <br><br> Courses To bulid new services lines and revenue
+            <br><br>opportunities <br><br><br>
+
+            Leverageonline Training and certification <br><br> Courses To bulid new services lines and revenue
+            <br><br>opportunities <br><br><br>
+        </p>
+
+        <p class="vl1"></p>
+
+        <img class="im2" src="{% static 'photo/3.png' %}" alt="">
+    </div>
+
+
+    <script>
+        window.addEventListener('scroll', reval);
+        function reval() {
+
+            var reval = document.querySelectorAll('.reval');
+
+            for (var i = 0; i < reval.length; i++) {
+
+                var windowheight = window.innerHeight;
+                var revaltop = reval[i].getBoundingClientRect().top;
+                var revalpoint = 150;
+
+                if (revaltop < windowheight - revalpoint) {
+                    reval[i].classList.add('active');
+                }
+                else
+                    reval[i].classList.remove('active');
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,378 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <title>Kanmey Lms</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+<link rel="shortcut icon" href="{% static 'icons8-k-64.png' %}" type="image/x-icon">
+<link rel="stylesheet" href="https://icons.getbootstrap.com/assets/font/bootstrap-icons.css">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<link rel="stylesheet" href="{% static 'sidebar.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <!-- CSS only -->
+  <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+  <style>
+    hr {
+      background-color: white;
+    }
+
+    .scroll ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    .scroll ::-webkit-scrollbar-track {
+      background-color:#252d3417
+    }
+
+    .scroll ::-webkit-scrollbar-thumb {
+      background-color: #1025361f;
+       border-radius: 20px;
+       width: 10px;
+       height:10px
+    }
+
+    .scroll ::-webkit-scrollbar-thumb:hover {
+      background-color: #1025361f;
+       border-radius: 20px;
+       width: 10px;
+       height:10px
+    }
+
+    .body{
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    background: rgba(255, 254, 254, 0.135);
+
+    justify-content: center;
+    align-items: center;
+    font-family: consolas;
+}
+
+.container1{
+    width: 1100px;
+
+    background-color: #f3f3f336;
+    position: relative;
+    display: flex;
+    justify-content: center ;
+}
+
+.container1 .card1{
+    margin-left: 10px;
+    position: relative;
+    cursor: pointer;
+
+}
+
+.container1 .card1 .face{
+    width:250px;
+    height:150px;
+    transition: 0.5s;
+    border-radius: 20px;
+
+}
+
+.container1 .card1 .face.face1{
+    position: relative;
+    color: white;
+    background: #11101d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    transform: translateY(50px);
+}
+
+.container1 .card1:hover .face.face1{
+    color: #11101d;
+    background: #11101d93;
+    transform: translateY(5px);
+    border-top-left-radius:20px ;
+    border-top-right-radius:20px ;
+    border-bottom-left-radius:0px ;
+    border-bottom-right-radius: 0px;
+}
+.container1 .card1:hover .face.face2{
+  color: #11101d;
+    border-top-left-radius:0px ;
+    border-top-right-radius:0px ;
+    border-bottom-left-radius:20px ;
+    border-bottom-right-radius: 20px;
+}
+.container1 .card1 .face.face1 .content1{
+    opacity: 0.2;
+    transition: 1s;
+}
+
+.container1 .card1:hover .face.face1 .content1{
+    opacity: 1;
+}
+
+
+
+.container1 .card1 .face.face1 .content1 .h3{
+    margin: 10px 0 0;
+    padding: 0;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+.container1 .card1 .face.face1 .content1 .h3 :hover{
+  color: white;
+  color: #11101d;
+}
+.container1 .card1 .face.face2{
+    position: relative;
+    background: rgba(51, 51, 51, 0.135);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.355);
+    transform: translateY(-100px);
+}
+
+.container1 .card1:hover .face.face2{
+    transform: translateY(0);
+}
+
+.container1 .card1 .face.face2 .content1 .p{
+    margin: 0;
+    padding: 0;
+}
+
+
+.container1 .card1 .face.face2 .content1 .a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.container1 .card1 .face.face2 .content1 .a:hover{
+    background: #333;
+    color: #fff;
+}
+.ul.breadcrumb {
+        border-radius: 0px;
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #11101d;
+}
+
+      .ul.breadcrumb .li {
+  display: inline;
+  font-size: 18px;
+  color:rgb(69, 171, 255) ;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+.ul.breadcrumb .li+.li:before {
+  padding: 8px;
+  color: rgb(255, 251, 251);
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+.ul.breadcrumb .li .a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+.ul.breadcrumb .li .a:hover {
+  color: #b3d6f4;
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo_content">
+      <div class="logo">
+        <i class='bx bxl-kickstarter'></i>
+        <div class="logo_name">
+          anemy Lms
+        </div>
+        <br>
+
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav_list">
+<hr>
+      <li>
+
+        <a href="{% url 'instructor_home' %}">
+          <i class='bx bxs-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+        <hr>
+
+      </li>
+
+
+      <li>
+        <a href="{% url 'Schedule_home' %}">
+          <i class='bx bx-table'></i>
+          <span class="links_name">Schedule</span>
+        </a>
+        <span class="tooltip">Schedule</span>
+        <hr>
+
+      </li>
+
+
+
+    </ul>
+    <div class="profile_content">
+      <div class="profile">
+        <div class="profile_details">
+          <img src="{% static 'iconins.png' %}" alt="">
+          <div class="name_job">
+            <div class="name">Ahmed Ibrahim</div>
+            <div class="job">Web Developer</div>
+          </div>
+        </div>
+        <a href="{% url 'logout-view' %}"><i class='bx bx-log-out' id="log_out"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper  home_content">
+
+
+    <!-- Page Content  -->
+    <div id="content" class=" ">
+        <ul class="ul breadcrumb ">
+        <li class="li"><a class="a"  href="{% url 'instructor_home' %}">Home</a></li>
+        <li class="li">Schedule</li>
+
+      </ul>
+
+      <div id="content" class="  row  scroll   body ">
+          <h1 class="text-center">Available schedules</h1>
+          <div class=" container1 col-9 " style="margin-top: -200px">
+
+        <div id="requestcompanymass"  style="width: 100%; overflow: scroll;
+         overflow-y: hidden;  overflow-x: visible ;padding: 10px;
+         display: flex;flex-wrap: nowrap;
+          align-content: center;margin: 0%;
+          ">
+          {% for s_c in s_c %}
+
+          <div class="card1">
+            <div class="face face1">
+                <div class="content1">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor" class="bi bi-table img" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
+                  </svg>
+
+                   <h3 class="h3"> {{s_c.Schedule}}</h3>
+                </div>
+
+            </div>
+            <div class="face face2">
+                <div class="content1">
+                    <p class="p">Course Name :  {{s_c.course}}</p>
+                        <a class="a" href="{% url 'Schedule_Instructor' s_c.Schedule %}">Read More</a>
+                </div>
+            </div>
+
+      </div>
+
+
+
+          {% endfor %}
+        </div>
+      </div>
+        <div id="requestcompany" style="display: inline;">
+
+
+
+
+        </div>
+
+        <!-- <div class="dropdown-divider"></div> -->
+
+
+
+      </div>
+
+    </div>
+
+
+
+
+  <script>
+    let btn = document.querySelector('#btn')
+    let sidebar = document.querySelector('.sidebar')
+
+    btn.onclick = function () {
+      sidebar.classList.toggle('active')
+    }
+    function schedule(data) {
+
+      if (data == null) {
+        $.ajax({
+          url: window.location.origin + "/instructor/Schedule",
+
+          success: function (req) {
+            $("#requestcompany").html(req)
+          }
+
+        });
+      } else if (data == "data") {
+        var d = {
+          "get": "submit_schedule",
+          "Schedule_Name": $("#Schedule_Name").val(),
+          "instructor_schedule_name": $("#instructor_schedule_name").val(),
+          "student_schedule_name": $("#student_schedule_name").val(),
+          "course_name": $("#course_name").val(),
+          "quiz_name": $("#quiz_name").val(),
+          "task_name": $("#task_name").val(),
+          "material_name": $("#material_name").val(),
+          "post_title": $("#post_title").val(),
+        }
+        $.ajax({
+          url: window.location.origin + "/instructor/Schedule",
+          data: d,
+          dataType: "json",
+          success: function (req) {
+            $("#requestcompany").html(req)
+          }
+
+        });
+      }
+
+    }
+
+  </script>
+</body>
+
+</html>

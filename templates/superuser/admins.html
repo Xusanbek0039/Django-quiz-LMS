@@ -1,0 +1,71 @@
+{% extends "baseSidebar.html" %}
+
+{% block title %}
+	Superuser| Admins
+{% endblock title %}
+
+
+{% block userPage %}
+
+	<h1 class="text-center mt-5">Admins</h1>
+
+	<div class="col-4 offset-4">
+
+		<select id="sel_c" class="form-select text-muted" size="3" aria-label="Default select example">
+			<option selected>Filter with company</option>
+
+			{% for loop in all_companies %}
+				<option value="{{loop}}" val_com="{{loop}}">{{loop}}</option>
+			{% endfor %}
+			
+		  </select>
+
+	</div>
+
+	<form action="" method="post" hidden>{% csrf_token %}
+		<input type="text" name="co_name" hidden id="co_name">
+		<button type="submit" hidden id="sub_filter"></button>
+	</form>
+	
+
+	<div class="container mt-5">
+		<table class="table table-dark table-hover">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Email</th>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Type</th>
+					<th>Active</th>
+					<th>Date joined</th>
+					<th>Last login</th>
+					<th>Company</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for data in all_admins %}
+					<tr>
+						<td>{{data.username}}</td>
+						<td>{{data.email}}</td>
+						<td>{{data.first_name}}</td>
+						<td>{{data.last_name}}</td>
+						<td>{{data.admin_type}}</td>
+						<td>{{data.is_active}}</td>
+						<td>{{data.date_joined}}</td>
+						<td>{{data.last_login}}</td>
+						<td>{{data.company_name}}</td>
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+		$('#sel_c').change( e => {
+			$('#co_name').val($('#sel_c').val())
+			$('#sub_filter').click()
+		})
+	</script>
+{% endblock userPage %}

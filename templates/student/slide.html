@@ -1,0 +1,188 @@
+{% load  static %}
+<html lang="en">
+  <head>
+  	<title>Kanemy Lms</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% comment %}
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endcomment %}
+<!-- <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+<link rel="stylesheet" href="{% static 'sidebar.css' %}">
+      <link rel="stylesheet" href="{% static 'slide.css' %}">
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.v5.js' %}"></script>
+<!-- <link rel="stylesheet" href="{% static 'schedule_home.css' %}"> -->
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+<!-- CSS only -->
+<link  rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css"> 
+<link rel="shortcut icon" href="{% static 'icons8-k-64.png' %}" type="image/x-icon">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="{% static 'js/jquery-min.js' %}"></script>
+
+<script src="{% static 'js/popper.js' %}"></script>
+
+    <style>
+      .scroll ::-webkit-scrollbar{
+        width: 0px;
+        height: 0px;
+      }
+      
+      .scroll ::-webkit-scrollbar-track{
+        background-color: #6c757d;
+      }
+      .scroll ::-webkit-scrollbar-thumb{
+        background-color: #6c757d;
+      }
+      .scroll ::-webkit-scrollbar-thumb:hover{
+        background-color: #6c757d;
+      }
+.ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #11101d;
+}
+
+      .ul.breadcrumb .li {
+  display: inline;
+  font-size: 18px;
+  color:rgb(69, 171, 255) ;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+.ul.breadcrumb .li+.li:before {
+  padding: 8px;
+  color: rgb(255, 251, 251);
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+.ul.breadcrumb .li .a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+.ul.breadcrumb .li .a:hover {
+  color: #b3d6f4;
+  text-decoration: underline;
+}
+     </style>
+  </head>
+  <body class="scroll">
+    <body scroll>
+    
+      <div class="sidebar">
+        <div class="logo_content">
+          <div class="logo">
+            <i class='bx bxl-kickstarter'></i>
+            <div class="logo_name">
+              anemy Lms
+            </div>
+            <br>
+    
+          </div>
+          <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+    
+          <li>
+    
+            <a href="{% url 'student_home' %}">
+              <i class='bx bxs-home'></i>
+              <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+            <hr>
+    
+          </li>
+          
+         
+          <li>
+            <a href="{% url 'schedule_home' %}">
+              <i class='bx bx-table'></i>
+              <span class="links_name">Schedule</span>
+            </a>
+            <span class="tooltip">Schedule</span>
+            <hr>
+    
+          </li>
+
+        </ul>
+        <div class="profile_content">
+          <div class="profile">
+            <div class="profile_details">
+              <img src="{% static 'std_profile.png'%}" alt=" image ">
+              <div class="name_job">
+                <div class="name"><a title="Profile" href="">{{user.first_name }} {{ user.last_name}}</a> </div>
+                <div class="job">{{user.instructor_type}}</div>
+              </div>
+            </div>
+            <a href="{% url 'logout-view' %}"><i class='bx bx-log-out' id="log_out"></i></a>
+          </div>
+        </div>
+      </div>
+       
+    
+
+
+    
+
+      <div class="wrapper  align-items-stretch home_content">
+
+        <ul class="ul breadcrumb ">
+          <li  class="li" ><a class="a" href="{% url 'student_home' %}">Home</a></li>
+          <li  class="li" ><a class="a" href="{% url 'schedule_home' %}">Schedule</a></li>
+          <li  class="li"><a class="a" href="{% url 'Schedule' Schedule_Name %}">{{Schedule_Name}}</a></li>  
+          <li  class="li" >Material Slide</li>
+        </ul>
+        <div id="content" class=" justify-content-center " style="padding-top:30px ;">
+        
+          <div class="container col-10">
+    
+    
+            <div class="container">
+              
+              <div class="list" >
+                <center><h3>Slide of Schedule </h3></center>
+                <div style="height: 400px; overflow-y:scroll ;">
+                  {% for Material_slide in Material_slide  %}
+                  <div class="list-item">
+                    <div class="rank"><span>{{Material_slide.x}}</span></div>
+                    <div class="name">
+                      <h4>  {{Material_slide.material_name}} &emsp;&nbsp;&nbsp;&emsp; <a href="{{Material_slide.slide.url}}" target="_" class="a1" > Viwe </a></h4>
+                    </div>
+                  </div>
+                  {% endfor %}
+                
+               
+              </div>
+              </div>
+            </div>
+   
+        
+        
+          
+        </div>
+
+      </div>
+      
+		</div>
+
+    
+
+    <script>
+     
+      let btn = document.querySelector('#btn')
+     let sidebar = document.querySelector('.sidebar')
+  
+     btn.onclick = function () {
+       sidebar.classList.toggle('active')
+     }
+    </script>
+  </body>
+</html>

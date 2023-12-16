@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark p-4 animy" id="cus_nav">
+    <div class="container">
+      <a class="navbar-brand" href="#"></a>
+      <button id="toog" class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a id="home" class="" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a id="blog" class="" href="{% url 'blog' %}">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a id="us" class="" href="{% url 'contact-us' %}">Contact us</a>
+          </li>
+          <li class="nav-item">
+            <a id="comp" class="" href="{% url 'companies-view' %}">Companies</a>
+          </li>
+          <li class="nav-item">
+            <a id="b_comp" class="" href="{% url 'make-request' %}">Become company</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+
+
+    document.getElementById('toog').addEventListener('click', e => {
+      
+      for(let i=0; i<document.getElementsByClassName('nav-item').length; i++){
+        document.getElementsByClassName('nav-item')[i].classList.toggle('tog_e')
+      }
+    })
+  </script>

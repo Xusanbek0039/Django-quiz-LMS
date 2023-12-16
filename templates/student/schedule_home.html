@@ -1,0 +1,406 @@
+
+		{% load static %}
+    <html lang="en">
+    
+    <head>
+      <title>Kanmey Lms</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      {% comment %}
+      <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet"> -->
+    
+      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    
+      {% endcomment %}
+    
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+      <link rel="stylesheet" href="{% static 'sidebar.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+      <!-- <link rel="stylesheet" href="{% static 'schedule_home.css' %}"> -->
+      <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+      <!-- CSS only -->
+      <link  rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css"> 
+    <link rel="shortcut icon" href="{% static 'icons8-k-64.png' %}" type="image/x-icon">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <script src="{% static 'js/jquery-min.js' %}"></script>
+    
+      <script src="{% static 'js/popper.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.min.v5.js' %}"></script>
+
+    
+      <style>
+        .a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    border: 1px solid #333;
+}
+.a:hover{
+    background: #fff;
+    color: #333;
+}
+      body {
+          background-color: #dcdced64;
+        }
+    
+        hr {
+          background-color: white;
+        }
+    
+        .scroll ::-webkit-scrollbar {
+          width:3px;
+          height: 5px;
+        }
+    
+        .scroll ::-webkit-scrollbar-track {
+          background-color: #6c757d;
+        }
+    
+        .scroll ::-webkit-scrollbar-thumb {
+          background-color: #3b434a;
+        }
+    
+        .scroll ::-webkit-scrollbar-thumb:hover {
+          background-color: #3e454b;
+        }
+        /* @import url("https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap"); */
+
+.body1 {
+  --color: rgba(30, 30, 30);
+  --bgColor: rgb(190, 36, 36);
+ 
+
+  display: flex;
+  align-content: center;
+  gap: 2rem;
+  padding: 1rem;
+
+  font-family: "Oxygen", sans-serif;
+  color: var(--color);
+  
+}
+
+.h1 {
+  text-align: center;
+}
+
+.ol {
+ 
+  margin-inline: auto;
+  
+  display: flex;
+  flex-wrap: nowrap ;
+  gap: .6rem;
+  color: white;
+  list-style: none;
+  counter-reset: cardnr;
+  justify-content: center;
+}
+
+.li {
+  --frontColor: rgb(41, 52, 59);
+ 
+  --inlineP: 0.5rem;
+  --borderR: 4rem;
+  --arrowW: 2rem;
+  --arrowH: 1.5rem;
+
+  counter-increment: cardnr;
+
+  display: grid;
+  grid-template:
+    "icon" var(--borderR)
+    "title"
+    "descr" 1fr;
+  margin-inline: var(--inlineP);
+  margin-bottom: calc(var(--borderR));
+  position: relative;
+}
+.li .icon,
+.li .title,
+.li .descr {
+  background:#232332;
+  padding-inline: 1rem;
+  padding-bottom: 1rem;
+}
+.li .icon,
+.li .title {
+  color: #ffffff;
+  text-align: center;
+  
+  padding-bottom: 0.5rem;
+}
+
+.li .title,
+.li .descr {
+  filter: drop-shadow(0.125rem 0.125rem 0.075rem rgba(0, 0, 0, 0.25));
+}
+.li .icon {
+  padding-top:5px ;
+  grid-area: icon;
+  font-size: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--borderR) 0 0 0;
+  position: relative;
+}
+
+.li .title {
+  grid-area: title;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.li .descr {
+  grid-area: descr;
+  font-size: 1rem;
+  text-align: center;
+}
+.li .descr::before {
+  content: "";
+  width: var(--arrowW);
+  height: var(--arrowH);
+  position: absolute;
+  right: 1.5rem;
+  top: 100%;
+  background: #c9c9db;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.li::after {
+  content: counter(cardnr, decimal-leading-zero);
+  position: absolute;
+  z-index: -1;
+
+  left: calc(var(--inlineP) * -1);
+  right: calc(var(--inlineP) * -1);
+  top: var(--borderR);
+  bottom: calc(var(--borderR) * -1);
+
+  display: flex;
+  align-items: flex-end;
+  background: #11101d;
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.25), transparent 25% 75%, rgba(0, 0, 0, 0.25));
+  border-radius: 0 0 var(--borderR) 0;
+
+  --pad: 2rem;
+  padding: var(--pad);
+  font-size: calc(var(--borderR) - var(--pad) * 2);
+  color: white;
+}
+
+
+.li::before {
+  content: "";
+  position: absolute;
+  height: var(--borderR);
+  top: calc(100% + var(--borderR) - 2px);
+  left: calc(var(--inlineP) * -1);
+  right: calc(var(--inlineP) * -1);
+  border-radius: 0 var(--borderR) 0 0;
+  width: 300px;
+  background-image: linear-gradient(  #11101d, transparent 60%);
+  opacity: 0.5;
+  filter: blur(2px);
+}
+
+.ul1.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #11101d;
+}
+
+      .ul1.breadcrumb .li1 {
+  display: inline;
+  font-size: 18px;
+  color:rgb(69, 171, 255) ;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+.ul1.breadcrumb .li1+.li1:before {
+  padding: 8px;
+  color: rgb(255, 251, 251);
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+.ul1.breadcrumb .li1 .a1 {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+.ul1.breadcrumb .li1 .a1:hover {
+  color: #b3d6f4;
+  text-decoration: underline;
+}
+
+      </style>
+    </head>
+    
+    <body scroll>
+    
+      <div class="sidebar">
+        <div class="logo_content">
+          <div class="logo">
+            <i class='bx bxl-kickstarter'></i>
+            <div class="logo_name">
+              anemy Lms
+            </div>
+            <br>
+    
+          </div>
+          <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+    
+          <li>
+    
+            <a href="{% url 'student_home' %}">
+              <i class='bx bxs-home'></i>
+              <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+            <hr>
+    
+          </li>
+          
+         
+          <li>
+            <a href="">
+              <i class='bx bx-table'></i>
+              <span class="links_name">Schedule</span>
+            </a>
+            <span class="tooltip">Schedule</span>
+            <hr>
+    
+          </li>
+    
+         
+    
+          
+          
+    
+         
+    
+          <!-- fas fa-chalkboard-teacher -->
+    
+        </ul>
+        <div class="profile_content">
+          <div class="profile">
+            <div class="profile_details">
+              <img src="{% static 'std_profile.png'%}" alt=" image ">
+              <div class="name_job">
+                <div class="name"><a title="Profile" href="">{{user.first_name }} {{ user.last_name}}</a> </div>
+                <div class="job">{{user.instructor_type}}</div>
+              </div>
+            </div>
+            <a href="{% url 'logout-view' %}"><i class='bx bx-log-out' id="log_out"></i></a>
+          </div>
+        </div>
+      </div>
+       
+    
+
+
+    
+
+      <div class="wrapper  align-items-stretch home_content">
+
+
+      <ul class="ul1 breadcrumb ">
+          <li  class="li1" ><a class="a1" href="{% url 'student_home' %}">Home</a></li>
+          <li  class="li1" > Schedule</li>
+       
+         
+        </ul>
+      <h1 class="text-center" style="margin-top: 100px">Opened schedule</h1>
+        <div id="content" class=" justify-content-center " style="margin-top: 50px">
+        
+          <div class="container col-10">
+    
+    
+        <!-- Page Content  -->
+    
+             
+        
+       
+    
+        <div id="requestcompanymass">
+          <div class=" scroll   ">
+
+          <div class="body1 scroll ">
+            <div  style="height:500px; width: 1200px;overflow-x:scroll;
+            padding: 10px;
+         display: flex;flex-wrap: nowrap;
+          align-content: center;margin: 0%;
+          " >
+            <ol class="ol  " style="height:400px ;">
+            {% for d in d %}
+              
+                <li  class="li" style="--accent-color:#11101d;width:280px; ">
+                  <div class="icon"><i class='bx bx-table'></i></div>
+                  <div class="title">
+                    Schedule  :  {{d.std_schedule}}
+                    <br>
+                    Course   :  {{d.course_name}}
+                  
+                  </div>
+                  <div class="descr">
+                    <hr >
+                  {% for i in d.inst %}
+                 
+                   <a style="color: white;" href=" {{i.Instructor_username }}">{{i.Instructor_type}} : {{i.Instructor_name}} </a>  <br>
+                  
+                  {% endfor %}
+                  {% if d.s_bt %}
+                  <a href="{% url 'Schedule' d.std_schedule %}" class="a">GO !!</a>
+                  {% endif %}
+                 
+                </div>
+                  
+              </li>
+         
+
+            {% endfor %}
+             
+          
+          
+          </ol>
+        </div>
+          </div>
+           
+           
+          
+
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+         
+  let btn = document.querySelector('#btn')
+ let sidebar = document.querySelector('.sidebar')
+
+ btn.onclick = function () {
+   sidebar.classList.toggle('active')
+ }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,440 @@
+body {
+    /* font-family: Poppins; */
+
+    background-image: url("../image/SignUPBG.png");
+
+    background-repeat : no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+
+h1 , h2 , h3 , h4 , h5 , h6 {
+    font-family: Poppins;
+}
+
+
+h2 {
+    color: white;
+}
+
+
+    .inp-login {
+        width: 48%;
+        float: left;
+    }
+    
+    .inp-login p {
+        font-size: 35px;
+        text-transform: capitalize;
+        color: white;
+
+        text-align: center;
+        margin-top: 15%;
+    }
+
+
+    .vl {
+        border: 1px solid grey;
+        height: 500px;
+        width: 1px;
+        margin-left: 90%;
+
+        position: relative;
+        display: inline-block;
+        
+    }
+
+
+    
+    .in-container {
+        margin-top: 15%;
+        margin-left: 1%;
+    }
+    .in-container h2  {
+        font-size: 39px;
+        font-family: Poppins, Poppins-SemiBold;
+        color: white;
+    }
+
+
+    .in-container label {
+        color: white;
+        width: 186px;
+        height: 36px;
+        font-size: 27px;
+        font-family: Poppins, Poppins-Regular;
+        font-weight: 400;
+        text-align: left;
+        color: #e6e6e6;
+    }
+  
+
+/* Media Query Large screen */
+@media (min-width: 1281px) {
+
+    .name-header {
+        overflow: hidden;
+        padding: 10px 10px;
+        width: auto;
+        height: auto;
+        background: linear-gradient(225deg,#040b47, #01020e);
+    }
+    
+    .name-title {
+        color: white;
+        font-size: 33px;
+        text-transform: capitalize;
+        text-align: center;
+        font-weight: bold;
+        padding: 12px;
+        line-height: 25px;
+        border-radius: 5px;
+    }
+
+
+    .inp-account {
+        width: 363px;
+        height: 40px;
+        border-radius: 15px;
+
+        margin: 1%;
+    }  
+
+    
+    .but-submit {
+        margin-top: 80px;
+        margin-left: 450px;
+        width: 122px;
+        height: 52px;
+        background: #040b47;
+        border: 2px solid #040b47;
+        border-radius: 17px;
+        font-size: 20;
+        cursor: pointer;
+        color: white;
+    }
+
+    .but-submit a {
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+    }
+
+    .in-container span{
+    width: 300px;
+    height: 27px;
+    font-size: 20px;
+    font-family: Poppins, Poppins-Medium;
+    font-weight: 500;
+    text-align: left;
+    color: #707070;
+    }
+    .in-container span a{
+        color: #707070;
+        text-decoration: none;
+        display: block;
+    }
+
+    .marg-submit{
+        margin-top: 35px;  
+    }
+
+    .marg-submit-h3{
+        margin-bottom: 40px;
+        margin-left: 10%;
+        font-size: 25px;
+        color: white; 
+    }
+
+    .marg-submit-h3 a{
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+    }
+
+    
+}
+
+
+/* Media Query Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px){
+    .name-header {
+        margin-bottom: 15px;
+        margin-left: 46.5%;
+        border:2rem;
+    
+        overflow: hidden;
+        padding: 5px;
+    }
+    
+    .name-header .name-title {
+        font-size: 25px;
+        text-transform: capitalize;
+        margin-bottom: 15px;
+
+        color: white;
+    }
+    
+    .but-submit {
+        margin-top: 55px;
+        margin-left: 315px;
+        width: 140px;
+        height: 40px;
+        background: #040b47;
+        border: 2px solid #040b47;
+        border-radius: 17px;
+        font-size: 20;
+        cursor: pointer;
+        color: white;
+    }
+    .but-submit a {
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+    }
+
+
+    .marg-submit{
+        margin-top: 25px;
+        
+    }
+
+    .marg-submit-h3{
+        margin-bottom: 30px;
+        margin-left: 8%;
+        font-size: 20px;
+        color: white; 
+    }
+
+    .marg-submit-h3 a{
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+    }
+
+
+    .inp-account {
+        width: 363px;
+        height: 40px;
+        border-radius: 15px;
+
+    }
+
+}
+  
+
+/* Media Query Mobile */
+@media (max-width: 480px) {
+
+    .inp-login {
+        width: 20%;
+        float: left;
+    }
+    
+
+    .inp-login p {
+        font-size: 17px;
+        text-transform: capitalize;
+        color: white;
+
+        text-align: center;
+        margin-top: 15%;
+    }
+
+    .in-container label {
+        color: white;
+        width: auto;
+    }
+
+    .inp-account {
+        width: 220px;
+        height: 35px;
+
+        border-radius: 15px;
+        margin-left: 15px;
+    }
+
+    
+    .but-submit {
+        margin-top: 37px;
+        margin-left: 219px;
+        width: 84px;
+        height: 33px;
+        background: #040b47;
+        border: 2px solid #040b47;
+        border-radius: 17px;
+        color: white;
+        font-size: medium;
+    }
+    .but-submit a {
+   
+        color: white;
+        text-decoration: none;
+    }
+
+
+    .marg-submit{
+        margin-top: 20px;
+        
+    }
+
+    .marg-submit-h3{
+        MARGIN-TOP: 42px;
+        margin-left: 47%;
+        font-size: 19px;
+        color: white;
+        WIDTH: 270PX;
+    }
+
+    .marg-submit-h3 a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .in-container h2  {
+    
+        font-size: medium;
+    margin-left: 30px;
+    margin-bottom: 55px;
+    width: 150px;
+    }
+}
+
+  
+
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+    .name-header {
+        margin-bottom: 20px;
+        margin-left: 46.5%;
+        border:2rem;
+    
+        overflow: hidden;
+        padding: 5px;
+    }
+    
+    .name-header .name-title {
+        font-size: 28px;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+        
+        color: white;
+    }
+
+    .inp-account {
+        width: 230px;
+        height: 35px;
+
+        border-radius: 15px;
+        margin-left: 15px;
+    }
+
+    .but-submit {
+        margin-top: 80px;
+        margin-left: 200px;
+        width: 100px;
+        height: 50px;
+        background: #040b47;
+        border: 2px solid #040b47;
+        border-radius: 17px;
+        font-size: 20;
+        color: white;
+    }
+    .but-submit a {
+        color: white;
+        text-decoration: none;
+    }
+
+
+    .marg-submit{
+        margin-top: 35px;
+        
+    }
+
+    .marg-submit-h3{
+        margin-bottom: 40px;
+        margin-left: 5%;
+        font-size: 25px;
+        color: white; 
+    }
+
+    .marg-submit-h3 a{
+        text-decoration: none;
+        color: white;
+    }
+}
+  
+
+
+/* Media Query for Tablets Ipads  mode */
+@media (min-width: 768px) and (max-width: 1024px){
+    .name-header {
+        margin-bottom: 20px;
+        margin-left: 46.5%;
+        border:2rem;
+    
+        overflow: hidden;
+        padding: 5px;
+    }
+    
+    .name-header .name-title {
+        font-size: 35px;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+        
+        color: white;
+    }
+    
+
+    .inp-login {
+        width: 34%;
+        float: left;
+    }
+
+    .inp-account {
+        width: 230px;
+        height: 35px;
+
+        border-radius: 15px;
+        margin-left: 15px;
+    }
+
+    .but-submit {
+        margin-top: 80px;
+        margin-left: 230px;
+        width: 90px;
+        height: 50px;
+        background: #040b47;
+        border: 2px solid #040b47;
+        border-radius: 17px;
+        font-size: 20;
+        color: white;
+    }
+    .but-submit a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .marg-submit{
+        margin-top: 35px;
+        margin-left: 5%;
+    }
+
+    .marg-submit-h3{
+        margin-bottom: 40px;
+        margin-left: 8%;
+        font-size: 25px;
+        color: white; 
+    }
+
+    .marg-submit-h3 a{
+        color: white;
+    }
+
+
+    
+}
+  
+

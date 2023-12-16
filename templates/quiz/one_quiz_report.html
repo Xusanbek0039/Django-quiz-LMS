@@ -1,0 +1,288 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/form_style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+        <script src="{% static 'js/jquery-min.js' %}"></script>
+
+        <script src="{% static 'js/popper.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.v5.js' %}"></script>
+        <title>{{ q_name }} | report</title>
+
+        <style>
+            hr{
+              background-color: white;
+            }
+            .scroll ::-webkit-scrollbar {
+              width: 2px;
+              height: 1px;
+            }
+
+            .scroll ::-webkit-scrollbar-track {
+              background-color: #6c757d;
+            }
+
+            .scroll ::-webkit-scrollbar-thumb {
+              background-color: #6c757d;
+            }
+
+            .scroll ::-webkit-scrollbar-thumb:hover {
+              background-color: #6c757d;
+            }
+
+            .bt {
+              background-color: #5a6268;
+              border-color: #5a6268;
+            }
+
+            .bt:hover {
+              background-color: #fdfeff;
+              border-color: #454b50;
+            }
+        </style>
+
+    </head>
+	<body>
+
+        <div class="sidebar">
+  <div class="logo_content">
+      <div class="logo">
+        <i class='bx bxl-kickstarter'></i>
+          <div class="logo_name">
+             anemy Lms
+          </div>
+          <br>
+
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+  </div>
+  <ul class="nav_list">
+
+      <li>
+
+              <a href="{% url 'instructor_home' %}">
+                <i class='bx bxs-home' ></i>
+                  <span class="links_name">Home</span>
+              </a>
+               <span class="tooltip">Home</span>
+               <hr>
+
+      </li>
+
+
+      <li>
+              <a href="{% url 'Schedule_home' %}">
+                  <i class='bx bx-table' ></i>
+                  <span class="links_name">Schedule</span>
+              </a>
+              <span class="tooltip">Schedule</span>
+              <hr>
+
+      </li>
+
+
+
+  </ul>
+  <div class="profile_content">
+      <div class="profile">
+          <div class="profile_details">
+            <img src="{% static 'iconins.png' %}" alt="">
+              <div class="name_job">
+                  <div class="name"> {{user.first_name }} {{ user.last_name}} </div>
+                  <div class="job">{{user.instructor_type}}</div>
+              </div>
+          </div>
+          <a href="{% url 'logout-view' %}" class="text-white"><i class='bx bx-log-out' id="log_out"></i></a>
+      </div>
+  </div>
+</div>
+
+        <div class="home_content">
+
+            <header>
+
+                  <div class="px-3 py-2 text-white" style="background-color: #11101d;">
+                    <div class="container">
+                      <div class="justify-content-center justify-content-lg-start">
+                        <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                        </a>
+
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                            <li>
+                                <a href="{% url 'instructor_home' %}" class="nav-link text-white">home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'add-quiz' Schedule_name %}" class="nav-link text-white">Add quiz</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'my-quizes-view' Schedule_name %}" class="nav-link text-white">My quizes</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'reports-view' Schedule_name %}" class="nav-link text-white">Quiz report</a>
+                            </li>
+
+
+                          <li>
+
+                            <div class="dropdown ">
+                              <button class="btn dropdown-toggle nav-link text-white " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false">
+                                  Schedule
+                            </button>
+                              <div class="dropdown-menu" aria-labelledby="triggerId">
+
+                                {% for instructor_Schedule in instructor_Schedule %}
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="{% url 'Schedule_Instructor' instructor_Schedule.instructor_schedule_name %}">
+                                    {{instructor_Schedule.instructor_schedule_name}}</a>
+                                  <div class="dropdown-divider"></div>
+                                {% endfor %}
+
+
+                              </div>
+                            </div>
+                          </li>
+
+
+
+
+                        </ul>
+
+
+                    </div>
+                  </div>
+                  </div>
+
+                <!-- <div class="px-3 py-2 border-bottom mb-3">
+                  <div class="container d-flex flex-wrap justify-content-center">
+
+
+                    <div class="text-end">
+                      <center><b>welcome {{user.instructor_type}} : {{user.first_name }} {{ user.last_name}} </b></center>
+                    </div>
+
+                  </div>
+                </div> -->
+
+            </header>
+
+            <h1 class="text-center" style="margin-top: 100px; font-size: 50px">{{ q_name }} report</h1>
+
+		    <div class="container box" style="margin-top: 50px;">
+                <div class="columns">
+                    <div class="column is-one-third is-offset-4">
+                        <input id="search" class="input is-medium" type="text" placeholder="Search.....">
+                        {% csrf_token %}
+                    </div>
+                </div>
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+	<thead>
+	  <tr>
+		<th>Student</th>
+		<th>Student email</th>
+		<th>Id college</th>
+		<th>Quiz name</th>
+		<th>Question</th>
+		<th>Here answer</th>
+		<th>Correct answer</th>
+		<th>Answer condidtion</th>
+		<th>Answered on</th>
+		<!-- <th>Question score</th> -->
+		<th><abbr title="Total">Total</abbr></th>
+		<th><abbr title="Total">To pass</abbr></th>
+	  </tr>
+	</thead>
+
+	<tbody>
+		{% for k, val in data %}
+
+			{% for d_k in k %}
+				<tr>
+					<td>{{d_k.user}}</td>
+					<td>{{d_k.user.email}}</td>
+					<td>{{d_k.user.id_college}}</td>
+					<td>{{d_k.quiz.name}}</td>
+					<td>{{d_k.question}}</td>
+					<td>{{d_k.student_answer}}</td>
+					<td>{{d_k.correct_answer}}</td>
+					<td>{{d_k.is_true_answered}}</td>
+					<td>{{d_k.on_date}}</td>
+					<td>{{d_k.question_score}}</td>
+					<td></td>
+				</tr>
+
+			{% endfor %}
+			<tr class="is-selected text-black h6">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="subtitle is-5" style="background-color: rgb(70, 193, 125);">{{val.total}}%</td>
+				<td class="subtitle is-5" style="background-color: #c250ab;">{{val.score_to_pass}}%</td>
+			</tr>
+
+		{% endfor %}
+
+	</tbody>
+  </table>
+
+            </div>
+
+        </div>
+
+
+
+
+
+		<script>
+
+            document.querySelector('#btn').onclick = function(){
+                document.querySelector('.sidebar').classList.toggle('active')
+            }
+
+			document.getElementById('search').focus()
+
+			$('#search').change(function(){
+
+				$.ajax({
+					method: 'POST',
+					url: `${window.location.origin}/quiz-conf/report/${window.location.pathname.split('/')[3]}/${window.location.pathname.split('/')[4]}/`,
+					data:{
+						csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+						value: $('#search').val(),
+					},
+					success:function(res){
+						document.open()
+						document.write(res)
+					}
+				})
+			})
+
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,237 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/form_style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+        <script src="{% static 'js/jquery-min.js' %}"></script>
+
+        <script src="{% static 'js/popper.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.v5.js' %}"></script>
+        <title>{{ q_name }} | report</title>
+
+
+        <style>
+            .scroll ::-webkit-scrollbar {
+              width: 2px;
+              height: 1px;
+            }
+
+            .scroll ::-webkit-scrollbar-track {
+              background-color: #6c757d;
+            }
+
+            .scroll ::-webkit-scrollbar-thumb {
+              background-color: #6c757d;
+            }
+
+            .scroll ::-webkit-scrollbar-thumb:hover {
+              background-color: #6c757d;
+            }
+
+            .bt {
+              background-color: #5a6268;
+              border-color: #5a6268;
+            }
+
+            .bt:hover {
+              background-color: #fdfeff;
+              border-color: #454b50;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="sidebar">
+        <div class="logo_content">
+          <div class="logo">
+            <i class='bx bxl-kickstarter'></i>
+            <div class="logo_name">
+              anemy Lms
+            </div>
+            <br>
+
+          </div>
+          <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+
+          <li>
+
+            <a href="{% url 'student_home' %}">
+              <i class='bx bxs-home'></i>
+              <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+            <hr>
+
+          </li>
+
+
+          <li>
+            <a href="{% url 'schedule_home' %}">
+              <i class='bx bx-table'></i>
+              <span class="links_name">Schedule</span>
+            </a>
+            <span class="tooltip">Schedule</span>
+            <hr>
+
+          </li>
+
+        </ul>
+        <div class="profile_content">
+          <div class="profile">
+            <div class="profile_details">
+              <img src="{% static 'std_profile.png'%}" alt=" image ">
+              <div class="name_job">
+                <div class="name"><a title="Profile" href="">{{user.first_name }} {{ user.last_name}}</a> </div>
+                <div class="job">{{user.instructor_type}}</div>
+              </div>
+            </div>
+            <a href="{% url 'logout-view' %}"><i class='bx bx-log-out' id="log_out"></i></a>
+          </div>
+        </div>
+      </div>
+
+        <div class="home_content">
+
+            <header >
+                <center>
+                  <div class="px-3 py-2 text-white" style="background-color: #11101d;">
+                    <div class="container">
+                      <div class=" justify-content-center justify-content-lg-start">
+                        <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                        </a>
+
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                            <li>
+                                <a href="{% url 'student_home' %}" class="nav-link text-white">home</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'quiz-view' Schedule_name %}" class="nav-link text-white">Quiz view</a>
+                            </li>
+                           <li>
+                                <a href="{% url 'quiz-reports-view' Schedule_name %}" class="nav-link text-white">Quiz report</a>
+                            </li>
+
+
+
+                        </ul>
+                      </div>
+
+                    </div>
+                  </div>
+                </center>
+                <!-- <div class="px-3 py-2 border-bottom mb-3">
+                  <div class="container d-flex flex-wrap justify-content-center">
+
+
+                    <div class="text-end">
+                      <center><b>welcome {{user.instructor_type}} : {{user.first_name }} {{ user.last_name}} </b></center>
+                    </div>
+
+                  </div>
+                </div> -->
+
+            </header>
+
+            <div class="container">
+                <h1 class="text-center" style="margin-top: 100px"><span class="text-danger">{{ q_name }}</span> report</h1>
+                <div class="row justify-content-center" style="margin-top: 95px;">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                        <table class="table table-bordered">
+                        <thead>
+                            <tr class="alert-primary">
+                                <!-- <th>Student</th>
+                                <th>Student email</th> -->
+                                <th>Id college</th>
+                                <th>Quiz name</th>
+                                <th>Question</th>
+                                <th>Your answer</th>
+                                <th>Correct answer</th>
+                                <th>Answer condidtion</th>
+                                <th>Answered on</th>
+                                <th>Total</th>
+                                <th>To pass</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for r in reports %}
+                              <tr>
+                                <!-- <td>{{r.user}}</td>
+                                <td>{{r.user.email}}</td> -->
+                                <td>{{r.user.id_college}}</td>
+                                <td style="background-color: bisque;">{{r.quiz.name}}</td>
+                                <td>{{r.question}}</td>
+                                <td>{{r.student_answer}}</td>
+                                <td>{{r.correct_answer}}</td>
+                                {% if r.is_true_answered == 'Incorrect theory answer' or r.is_true_answered == 'Incorrect chosen answer' or r.is_true_answered == 'Not answered!!' %}
+                                    <td style="background-color: rgb(196, 100, 100); color: #ffff; font-weight: 500;">{{r.is_true_answered}}</td>
+                                {% else %}
+                                    <td style="background-color: rgb(107, 214, 186); color: #ffff; font-weight: 500;">{{r.is_true_answered}}</td>
+                                {% endif %}
+
+                                <td>{{r.on_date}}</td>
+                                <td style="background-color: bisque;">{{r.question_score}}</td>
+                                <td></td>
+                              </tr>
+                            {% endfor %}
+
+                            {% for t in total %}
+                                <tr class="alert-primary">
+                                    <!-- <td></td>
+                                    <td></td> -->
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{t.total}}%</td>
+                                    <td style="background-color: brown; color: #ffff;">{{t.score_to_pass}}%</td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+
+                    </div>
+	            </div>
+            </div>
+
+
+        </div>
+
+        <script>
+            let btn = document.querySelector('#btn')
+            let sidebar = document.querySelector('.sidebar')
+
+            btn.onclick = function(){
+                sidebar.classList.toggle('active')
+            }
+        </script>
+
+    </body>
+
+</html>

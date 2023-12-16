@@ -1,0 +1,128 @@
+
+
+.body,
+.html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+article {
+
+  border: 5px double;
+  border-radius: 10px;
+  background: #141224;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+  max-width: 1300px;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+figure {
+  border-radius: 5px;
+  /*background: rgba(255, 255, 255, 0.11);*/
+  border-color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 500px;
+  padding: 30px;
+  color: white;
+  border: 5px double;
+  border-radius: 5px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+figure .img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  mix-blend-mode: luminosity;
+}
+
+figure .h1 {
+  font-size: 22pt;
+  line-height: 32pt;
+  margin: 20px 0 0 0;
+  text-align: center;
+  color: rgb(228, 31, 31);
+}
+
+figure .h1:hover {
+  font-size: 22pt;
+  line-height: 32pt;
+  margin: 20px 0 0 0;
+  text-align: center;
+  color: rgb(21, 7, 7);
+}
+
+figure figcaption .p {
+  font-size: 10pt;
+  line-height: 20pt;
+  margin: 10px 0px 20px 0px;
+  text-align: center;
+}
+
+figure .a {
+  text-decoration: none;
+ 
+  color: white;
+  padding: 5px 12px;
+  text-align: center;
+  border-radius: 5px;
+}
+figure .a:hover {
+  text-decoration: none;
+ 
+  color: rgb(81, 87, 101);
+  padding: 5px 12px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+figure::before {
+  background: #01fdb6;
+  position: absolute;
+  filter: blur(40px) saturate(120%) brightness(1.1);
+  font-size: 440pt;
+  z-index: -1;
+  animation: rotate 12s linear infinite;
+}
+
+figure::after {
+  /*--accent: #ffeb70;*/
+  --accent: #fff;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}

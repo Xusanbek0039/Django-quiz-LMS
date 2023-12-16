@@ -1,0 +1,145 @@
+/* form sign up */
+.form_signup input {
+    display: block;
+}
+
+.form_signup label {
+    font-weight: 500;
+}
+
+.form_signup input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+.form_signup input:focus {
+  border: 3px solid #555;
+
+}
+
+/* form sign in */
+.form_signin label {
+    font-weight: 500;
+}
+
+.form_signin input {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+.form_signin input:focus {
+  border: 3px solid #555;
+
+}
+
+
+
+/* form add quiz */
+.form_add_quiz label {
+    font-weight: 500;
+}
+
+.form_add_quiz input {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1.5px solid #600377;
+    -webkit-transition: 0.5s;
+    transition: 0.2s;
+    outline: none;
+}
+
+.form_add_quiz input:focus {
+  border: 2px solid #600377;
+
+}
+
+.form_add_quiz select{
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #600377;
+    -webkit-transition: 0.5s;
+    transition: 0.2s;
+    outline: none;
+}
+
+.form_add_quiz select:focus {
+    border: 1px solid #600377;
+  
+  }
+
+
+/* form add question */
+
+.add_question_form label {
+    font-weight: 500;
+}
+
+.add_question_form input {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1.5px solid #01816c;
+    -webkit-transition: 0.5s;
+    transition: 0.2s;
+    outline: none;
+}
+
+.add_question_form input:focus {
+  border: 2px solid #01816c;
+
+}
+
+.add_question_form textarea {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1.5px solid #01816c;
+    -webkit-transition: 0.5s;
+    transition: 0.2s;
+    outline: none;
+}
+
+.add_question_form textarea:focus {
+  border: 2px solid #01816c;
+
+}
+
+.custom_css select{
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #01816c;
+    -webkit-transition: 0.5s;
+    transition: 0.2s;
+    outline: none;
+}
+
+.custom_css select:focus {
+    border: 1px solid #01816c;
+  
+  }
